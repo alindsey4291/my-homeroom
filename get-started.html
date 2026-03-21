@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Get Started — My Homeroom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #FAF6EF;
+    --green: #2B4A3C;
+    --green-light: #3D6352;
+    --terra: #C07A52;
+    --terra-light: #D4956F;
+    --text: #1C1C18;
+    --muted: #5E5E52;
+    --border: #E2DBCF;
+    --white: #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* NAV */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(250,246,239,0.96);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Lora', serif; font-weight: 600; font-size: 1.15rem;
+    color: var(--green); text-decoration: none;
+  }
+  .nav-back {
+    font-size: 0.88rem; color: var(--muted); text-decoration: none;
+    display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--green); }
+  .nav-back::before { content: "←"; }
+
+  /* MAIN */
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 5%;
+  }
+
+  .eyebrow {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--terra);
+    margin-bottom: 1rem; display: block; text-align: center;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600; line-height: 1.2;
+    letter-spacing: -0.02em; color: var(--green);
+    text-align: center; margin-bottom: 0.75rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  h1 em { font-style: italic; color: var(--terra); }
+
+  .subtitle {
+    font-size: 1.05rem; color: var(--muted); font-weight: 300;
+    text-align: center; max-width: 440px;
+    margin: 0 auto 3rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  /* CHOICE CARDS */
+  .choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 780px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .choice-card {
+    display: block;
+    text-decoration: none;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    border: 2px solid var(--border);
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .choice-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .choice-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(43,74,60,0.15);
+  }
+
+  .choice-card-family {
+    background: var(--white);
+  }
+  .choice-card-family:hover {
+    border-color: var(--green);
+  }
+
+  .choice-card-educator {
+    background: var(--green);
+  }
+  .choice-card-educator:hover {
+    background: var(--green-light);
+    border-color: var(--green-light);
+    box-shadow: 0 12px 40px rgba(43,74,60,0.25);
+  }
+
+  .choice-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .choice-card-family .choice-icon {
+    background: rgba(43,74,60,0.08);
+  }
+  .choice-card-educator .choice-icon {
+    background: rgba(255,255,255,0.12);
+  }
+
+  .choice-label {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; margin-bottom: 0.5rem; display: block;
+  }
+  .choice-card-family .choice-label { color: var(--terra); }
+  .choice-card-educator .choice-label { color: rgba(255,255,255,0.55); }
+
+  .choice-title {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem; font-weight: 600;
+    line-height: 1.25; letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+  .choice-card-family .choice-title { color: var(--green); }
+  .choice-card-educator .choice-title { color: var(--white); }
+
+  .choice-desc {
+    font-size: 0.92rem; font-weight: 300; line-height: 1.65;
+    margin-bottom: 1.75rem;
+  }
+  .choice-card-family .choice-desc { color: var(--muted); }
+  .choice-card-educator .choice-desc { color: rgba(255,255,255,0.7); }
+
+  .choice-features {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .choice-feature {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.85rem;
+  }
+  .choice-card-family .choice-feature { color: var(--muted); }
+  .choice-card-educator .choice-feature { color: rgba(255,255,255,0.75); }
+  .choice-dot {
+    width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  }
+  .choice-card-family .choice-dot { background: var(--terra); }
+  .choice-card-educator .choice-dot { background: var(--terra-light); }
+
+  .choice-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    font-weight: 500; text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .choice-card-family .choice-btn {
+    background: var(--green); color: var(--white);
+    box-shadow: 0 2px 12px rgba(43,74,60,0.25);
+  }
+  .choice-card-family:hover .choice-btn {
+    background: var(--green-light);
+  }
+  .choice-card-educator .choice-btn {
+    background: var(--terra); color: var(--white);
+    box-shadow: 0 2px 12px rgba(192,122,82,0.3);
+  }
+  .choice-card-educator:hover .choice-btn {
+    background: var(--terra-light);
+  }
+  .choice-btn::after { content: "→"; }
+
+  /* DIVIDER */
+  .or-divider {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; color: var(--muted); font-weight: 400;
+    position: relative;
+  }
+  .or-divider::before, .or-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .or-divider span { padding: 0 0.75rem; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: 'Lora', serif; font-weight: 600; font-size: 1rem; color: var(--green); }
+  footer p { font-size: 0.8rem; color: var(--muted); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .choices { grid-template-columns: 1fr; }
+    .choice-card { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">My Homeroom</a>
+  <a href="index.html" class="nav-back">Back to home</a>
+</nav>
+
+<main>
+  <span class="eyebrow">Welcome</span>
+  <h1>Who are you here <em>as?</em></h1>
+  <p class="subtitle">Tell us which describes you and we will take you to the right place.</p>
+
+  <div class="choices">
+
+    <!-- FAMILY -->
+    <a href="family.html" class="choice-card choice-card-family">
+      <div class="choice-icon">🏠</div>
+      <span class="choice-label">For Families</span>
+      <h2 class="choice-title">I am looking for support for my child</h2>
+      <p class="choice-desc">Find a personally matched educator for tutoring, homeschool guidance, or enrichment — right in your home.</p>
+      <div class="choice-features">
+        <div class="choice-feature"><div class="choice-dot"></div>Academic tutoring</div>
+        <div class="choice-feature"><div class="choice-dot"></div>Homeschool guidance</div>
+        <div class="choice-feature"><div class="choice-dot"></div>Enrichment &amp; creative subjects</div>
+      </div>
+      <span class="choice-btn">Find Support for Your Family</span>
+    </a>
+
+    <!-- EDUCATOR -->
+    <a href="educator.html" class="choice-card choice-card-educator">
+      <div class="choice-icon">🎓</div>
+      <span class="choice-label">For Educators</span>
+      <h2 class="choice-title">I want to teach with My Homeroom</h2>
+      <p class="choice-desc">Join our network of vetted educators doing meaningful, flexible, home-based work with Charlotte families.</p>
+      <div class="choice-features">
+        <div class="choice-feature"><div class="choice-dot"></div>Flexible schedule</div>
+        <div class="choice-feature"><div class="choice-dot"></div>80% of every session rate</div>
+        <div class="choice-feature"><div class="choice-dot"></div>Personally matched to families</div>
+      </div>
+      <span class="choice-btn">Apply to Teach</span>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <span class="footer-logo">My Homeroom</span>
+  <p>© 2026 My Homeroom LLC · Charlotte, NC</p>
+</footer>
+
+</body>
+</html>
