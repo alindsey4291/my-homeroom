@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Family Portal — My Homeroom</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #FAF6EF;
+    --green: #2B4A3C;
+    --green-light: #3D6352;
+    --terra: #C07A52;
+    --terra-light: #D4956F;
+    --text: #1C1C18;
+    --muted: #5E5E52;
+    --border: #E2DBCF;
+    --white: #FFFFFF;
+    --shadow: 0 4px 24px rgba(43,74,60,0.10);
+    --shadow-lg: 0 12px 48px rgba(43,74,60,0.14);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 5%; background: rgba(250,246,239,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Lora', serif; font-weight: 600; font-size: 1.15rem; color: var(--green); text-decoration: none; }
+  .nav-back { font-size: 0.88rem; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+  .nav-back:hover { color: var(--green); }
+  .nav-back::before { content: "←"; }
+
+  /* HERO */
+  .portal-hero { background: var(--green); padding: 4rem 5% 3rem; position: relative; overflow: hidden; }
+  .portal-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(192,122,82,0.12) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 10% 80%, rgba(255,255,255,0.04) 0%, transparent 60%); }
+  .portal-hero-inner { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; }
+  .portal-eyebrow { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.75rem; display: block; }
+  .portal-hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem,4vw,3rem); font-weight: 600; color: var(--white); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+  .portal-hero h1 em { font-style: italic; color: var(--terra-light); }
+  .portal-hero p { color: rgba(255,255,255,0.65); font-weight: 300; font-size: 1rem; max-width: 480px; }
+  .portal-badge { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 1.5rem 2rem; text-align: center; white-space: nowrap; }
+  .portal-badge-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+  .portal-badge p { font-size: 0.82rem; color: rgba(255,255,255,0.55); font-weight: 300; }
+  .portal-badge strong { display: block; font-size: 1rem; color: var(--white); font-weight: 500; margin-bottom: 0.2rem; }
+
+  /* MAIN GRID */
+  .portal-body { max-width: 1080px; margin: 0 auto; padding: 3rem 5% 5rem; display: grid; grid-template-columns: 1fr 340px; gap: 2.5rem; align-items: start; }
+
+  /* CARDS */
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; box-shadow: var(--shadow); margin-bottom: 1.5rem; }
+  .card:last-child { margin-bottom: 0; }
+  .card-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+  .card-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(43,74,60,0.08); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+  .card-header h2 { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 600; color: var(--green); }
+  .card-header p { font-size: 0.83rem; color: var(--muted); font-weight: 300; }
+
+  /* PAYMENT SECTION */
+  .payment-steps { display: flex; flex-direction: column; gap: 1rem; }
+  .payment-step { display: flex; gap: 1rem; align-items: flex-start; padding: 1.1rem 1.25rem; background: var(--cream); border: 1px solid var(--border); border-radius: 14px; transition: box-shadow 0.2s; }
+  .payment-step:hover { box-shadow: var(--shadow); }
+  .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--green); color: var(--white); font-weight: 600; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .step-content h4 { font-size: 0.97rem; font-weight: 500; color: var(--green); margin-bottom: 0.25rem; }
+  .step-content p { font-size: 0.88rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+  .pay-btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem; width: 100%; padding: 1rem; background: var(--terra); color: var(--white); border: none; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.22s ease; margin-top: 1.5rem; box-shadow: 0 2px 14px rgba(192,122,82,0.3); }
+  .pay-btn:hover { background: var(--terra-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(192,122,82,0.35); }
+  .pay-btn::after { content: "→"; font-size: 1.1rem; }
+
+  .pay-note { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-size: 0.8rem; color: var(--muted); justify-content: center; }
+  .pay-note::before { content: "🔒"; font-size: 0.85rem; }
+
+  /* SESSIONS */
+  .session-list { display: flex; flex-direction: column; gap: 0.85rem; }
+  .session-item { display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; align-items: center; padding: 1rem 1.25rem; background: var(--cream); border: 1px solid var(--border); border-radius: 12px; }
+  .session-date { text-align: center; }
+  .session-date .month { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra); }
+  .session-date .day { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700; color: var(--green); line-height: 1; }
+  .session-info h4 { font-size: 0.95rem; font-weight: 500; color: var(--text); margin-bottom: 0.2rem; }
+  .session-info p { font-size: 0.83rem; color: var(--muted); font-weight: 300; }
+  .session-status { font-size: 0.78rem; font-weight: 600; padding: 0.3rem 0.85rem; border-radius: 100px; }
+  .status-upcoming { background: rgba(43,74,60,0.1); color: var(--green); }
+  .status-paid { background: rgba(192,122,82,0.12); color: var(--terra); }
+  .session-empty { text-align: center; padding: 2.5rem 1rem; color: var(--muted); }
+  .session-empty .empty-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+  .session-empty p { font-size: 0.92rem; font-weight: 300; }
+
+  /* EDUCATOR CARD */
+  .educator-profile { display: flex; gap: 1.25rem; align-items: center; padding: 1.25rem; background: var(--cream); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 1rem; }
+  .educator-avatar { width: 60px; height: 60px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 600; color: var(--white); flex-shrink: 0; }
+  .educator-info h3 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; color: var(--green); margin-bottom: 0.2rem; }
+  .educator-info p { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
+  .educator-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+  .educator-tag { background: rgba(43,74,60,0.08); color: var(--green); font-size: 0.75rem; font-weight: 500; border-radius: 100px; padding: 0.2rem 0.65rem; }
+  .educator-empty { text-align: center; padding: 2rem 1rem; color: var(--muted); }
+  .educator-empty .empty-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+  .educator-empty p { font-size: 0.88rem; font-weight: 300; line-height: 1.65; }
+  .educator-empty a { color: var(--terra); text-decoration: none; font-weight: 500; }
+  .educator-empty a:hover { text-decoration: underline; }
+
+  /* SIDEBAR */
+  .sidebar { position: sticky; top: 5rem; }
+
+  /* MESSAGE FORM */
+  .message-form { display: flex; flex-direction: column; gap: 0.85rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.82rem; font-weight: 500; color: var(--green); }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; color: var(--text); background: var(--cream); transition: border-color 0.2s; outline: none; resize: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); background: var(--white); }
+  .form-group textarea { height: 110px; }
+  .send-btn { width: 100%; padding: 0.9rem; background: var(--green); color: var(--white); border: none; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.22s ease; }
+  .send-btn:hover { background: var(--green-light); transform: translateY(-1px); }
+  .form-success { display: none; text-align: center; padding: 1.5rem; background: rgba(43,74,60,0.06); border-radius: 12px; }
+  .form-success .success-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+  .form-success p { font-size: 0.9rem; color: var(--green); font-weight: 300; }
+
+  /* QUICK LINKS */
+  .quick-links { display: flex; flex-direction: column; gap: 0.65rem; }
+  .quick-link { display: flex; align-items: center; gap: 0.75rem; padding: 0.9rem 1.1rem; background: var(--cream); border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--text); font-size: 0.9rem; transition: all 0.2s; }
+  .quick-link:hover { border-color: var(--green); background: var(--white); color: var(--green); box-shadow: var(--shadow); }
+  .quick-link-icon { width: 34px; height: 34px; border-radius: 8px; background: rgba(43,74,60,0.08); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .quick-link span { font-weight: 400; }
+  .quick-link::after { content: "→"; margin-left: auto; color: var(--muted); font-size: 0.9rem; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; background: var(--cream); border: 1px solid var(--border); border-radius: 100px; padding: 0.3rem; }
+  .tab { flex: 1; text-align: center; padding: 0.55rem 1rem; border-radius: 100px; font-size: 0.85rem; font-weight: 500; cursor: pointer; border: none; background: none; color: var(--muted); transition: all 0.2s; }
+  .tab.active { background: var(--white); color: var(--green); box-shadow: 0 1px 6px rgba(43,74,60,0.1); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* NOTICE BOX */
+  .notice { background: rgba(43,74,60,0.06); border: 1px solid rgba(43,74,60,0.15); border-left: 3px solid var(--terra); border-radius: 0 12px 12px 0; padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+  .notice p { font-size: 0.88rem; color: var(--muted); font-weight: 300; line-height: 1.65; }
+  .notice strong { color: var(--green); font-weight: 500; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 2rem 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; background: var(--white); }
+  .footer-logo { font-family: 'Lora', serif; font-weight: 600; font-size: 1rem; color: var(--green); }
+  footer p { font-size: 0.8rem; color: var(--muted); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.82rem; color: var(--muted); text-decoration: none; }
+  .footer-links a:hover { color: var(--green); }
+
+  @media (max-width: 860px) {
+    .portal-hero-inner { grid-template-columns: 1fr; }
+    .portal-badge { display: none; }
+    .portal-body { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">My Homeroom</a>
+  <a href="index.html" class="nav-back">Back to home</a>
+</nav>
+
+<!-- HERO -->
+<div class="portal-hero">
+  <div class="portal-hero-bg"></div>
+  <div class="portal-hero-inner">
+    <div>
+      <span class="portal-eyebrow">Family Portal</span>
+      <h1>Your My Homeroom<br><em>home base.</em></h1>
+      <p>View your sessions, make payments, connect with your educator, and reach us directly — all in one place.</p>
+    </div>
+    <div class="portal-badge">
+      <span class="portal-badge-icon">🏠</span>
+      <strong>My Homeroom</strong>
+      <p>Charlotte, NC</p>
+    </div>
+  </div>
+</div>
+
+<!-- PORTAL BODY -->
+<div class="portal-body">
+
+  <!-- LEFT COLUMN -->
+  <div class="portal-main">
+
+    <!-- NOTICE -->
+    <div class="notice">
+      <p><strong>How this works:</strong> When a session is confirmed, My Homeroom sends your invoice directly to your email. Click the payment link in that email to pay securely by card. This page is your reference hub — all payment processing happens through your invoice email.</p>
+    </div>
+
+    <!-- PAYMENTS CARD -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">💳</div>
+        <div>
+          <h2>Payments</h2>
+          <p>Pay your session invoices securely by card</p>
+        </div>
+      </div>
+
+      <div class="payment-steps">
+        <div class="payment-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Check your email after each session</h4>
+            <p>My Homeroom sends your invoice to the email address on file within 24 hours of each confirmed session.</p>
+          </div>
+        </div>
+        <div class="payment-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Click the payment link in your invoice</h4>
+            <p>Your invoice email includes a secure payment link. Click it to pay by credit or debit card — no account needed.</p>
+          </div>
+        </div>
+        <div class="payment-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Receive your receipt instantly</h4>
+            <p>A receipt is emailed to you as soon as payment is processed. Keep it for your records.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="mailto:hello@myhomeroom.org?subject=Payment%20Question" class="pay-btn">
+        Have a payment question? Contact us
+      </a>
+      <p class="pay-note">Payments are processed securely through Square. My Homeroom never stores your card details.</p>
+    </div>
+
+    <!-- SESSIONS CARD -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📅</div>
+        <div>
+          <h2>Sessions</h2>
+          <p>Your upcoming and recent sessions</p>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this, 'upcoming')">Upcoming</button>
+        <button class="tab" onclick="switchTab(this, 'recent')">Recent</button>
+      </div>
+
+      <div id="upcoming" class="tab-content active">
+        <div class="session-list" id="upcoming-list">
+          <div class="session-empty">
+            <span class="empty-icon">📋</span>
+            <p>Your upcoming sessions will appear here once My Homeroom confirms your schedule.<br><br>
+            <strong style="color:var(--green);">New family?</strong> Sessions are typically confirmed within 1–2 business days of your intake form being reviewed.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="recent" class="tab-content">
+        <div class="session-list" id="recent-list">
+          <div class="session-empty">
+            <span class="empty-icon">📂</span>
+            <p>Completed sessions will appear here. After each session you will also receive an invoice by email.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDUCATOR CARD -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🎓</div>
+        <div>
+          <h2>Your Educator</h2>
+          <p>Your personally matched My Homeroom educator</p>
+        </div>
+      </div>
+
+      <div id="educator-section">
+        <div class="educator-empty">
+          <span class="empty-icon">🤝</span>
+          <p>Your matched educator will be introduced here once My Homeroom has reviewed your intake form and confirmed a great fit.<br><br>
+          We personally review every match — this typically takes 1–2 business days. Have questions in the meantime? <a href="mailto:hello@myhomeroom.org">Reach out to us directly.</a></p>
+        </div>
+      </div>
+
+      <!-- Example of what a matched educator looks like — shown for demo -->
+      <div style="margin-top:1.25rem;">
+        <p style="font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:0.75rem;">Example — What Your Match Will Look Like</p>
+        <div class="educator-profile" style="opacity:0.55;">
+          <div class="educator-avatar">SR</div>
+          <div class="educator-info">
+            <h3>Sarah R.</h3>
+            <p>Academic Support · Grades 3–8 · Myers Park area</p>
+            <div class="educator-tags">
+              <span class="educator-tag">Reading</span>
+              <span class="educator-tag">Math</span>
+              <span class="educator-tag">Writing</span>
+              <span class="educator-tag">My Homeroom Verified</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <!-- MESSAGE CARD -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">✉️</div>
+        <div>
+          <h2>Message Us</h2>
+          <p>We respond within one business day</p>
+        </div>
+      </div>
+
+      <div id="message-form-wrap">
+        <form class="message-form" onsubmit="handleMessage(event)">
+          <div class="form-group">
+            <label for="msg-name">Your Name</label>
+            <input type="text" id="msg-name" placeholder="First and last name" required />
+          </div>
+          <div class="form-group">
+            <label for="msg-email">Email Address</label>
+            <input type="email" id="msg-email" placeholder="hello@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="msg-topic">Topic</label>
+            <select id="msg-topic">
+              <option value="">Select a topic</option>
+              <option>Session scheduling</option>
+              <option>Payment question</option>
+              <option>Educator match</option>
+              <option>Homeschool setup</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="msg-body">Message</label>
+            <textarea id="msg-body" placeholder="How can we help?" required></textarea>
+          </div>
+          <button type="submit" class="send-btn">Send Message</button>
+        </form>
+        <div class="form-success" id="form-success">
+          <span class="success-icon">✓</span>
+          <p>Message sent! We will be in touch within one business day.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔗</div>
+        <div>
+          <h2>Quick Links</h2>
+          <p>Helpful resources for your family</p>
+        </div>
+      </div>
+      <div class="quick-links">
+        <a href="family.html" class="quick-link">
+          <div class="quick-link-icon">📝</div>
+          <span>Update your family intake</span>
+        </a>
+        <a href="mailto:hello@myhomeroom.org?subject=Session%20Request" class="quick-link">
+          <div class="quick-link-icon">📅</div>
+          <span>Request a session change</span>
+        </a>
+        <a href="mailto:hello@myhomeroom.org?subject=Educator%20Feedback" class="quick-link">
+          <div class="quick-link-icon">⭐</div>
+          <span>Share feedback on your educator</span>
+        </a>
+        <a href="mailto:hello@myhomeroom.org?subject=Invoice%20Help" class="quick-link">
+          <div class="quick-link-icon">💳</div>
+          <span>Invoice or payment help</span>
+        </a>
+        <a href="privacy.html" class="quick-link">
+          <div class="quick-link-icon">🔒</div>
+          <span>Privacy Policy</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">My Homeroom</span>
+  <p>© 2026 My Homeroom LLC · Charlotte, NC</p>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="index.html">Home</a>
+  </div>
+</footer>
+
+<script>
+  function switchTab(btn, tabId) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+  }
+
+  function handleMessage(e) {
+    e.preventDefault();
+    const name = document.getElementById('msg-name').value;
+    const email = document.getElementById('msg-email').value;
+    const topic = document.getElementById('msg-topic').value;
+    const body = document.getElementById('msg-body').value;
+    const subject = encodeURIComponent('Family Portal Message' + (topic ? ' — ' + topic : ''));
+    const bodyEncoded = encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + body);
+    window.location.href = 'mailto:hello@myhomeroom.org?subject=' + subject + '&body=' + bodyEncoded;
+    document.getElementById('message-form-wrap').querySelector('form').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
