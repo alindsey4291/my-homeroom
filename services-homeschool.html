@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Homeschool Guidance — My Homeroom Charlotte</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root { --cream: #FAF6EF; --green: #2B4A3C; --green-light: #3D6352; --terra: #C07A52; --terra-light: #D4956F; --text: #1C1C18; --muted: #5E5E52; --border: #E2DBCF; --white: #FFFFFF; --section-pad: clamp(4rem,8vw,7rem); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 5%; background: rgba(250,246,239,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Lora', serif; font-weight: 600; font-size: 1.15rem; color: var(--green); text-decoration: none; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.88rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta { background: var(--green); color: var(--white) !important; padding: 0.5rem 1.2rem; border-radius: 100px; font-weight: 500 !important; }
+  .btn { display: inline-block; padding: 0.85rem 1.8rem; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500; text-decoration: none; transition: all 0.22s ease; }
+  .btn-primary { background: var(--green); color: var(--white); box-shadow: 0 2px 14px rgba(43,74,60,0.25); }
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-1px); }
+  .btn-outline-white { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.4); padding: 0.85rem 1.8rem; border-radius: 100px; font-size: 0.92rem; font-weight: 500; text-decoration: none; transition: all 0.22s; }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 5%; }
+  .section-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terra); margin-bottom: 0.75rem; display: block; }
+  .divider { width: 40px; height: 2.5px; background: var(--terra); margin-bottom: 1.75rem; border-radius: 2px; }
+  h2 { font-family: 'Lora', serif; font-size: clamp(1.9rem,4vw,2.6rem); font-weight: 600; line-height: 1.22; letter-spacing: -0.02em; color: var(--green); margin-bottom: 1rem; }
+  h2 em { font-style: italic; }
+
+  .hero { background: var(--green); padding: 6rem 5% 5rem; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 85% 30%, rgba(192,122,82,0.12) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 10% 80%, rgba(255,255,255,0.04) 0%, transparent 60%); }
+  .hero-inner { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .hero-eyebrow { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem; display: block; }
+  .hero h1 { font-family: 'Lora', serif; font-size: clamp(2.4rem,5vw,3.6rem); font-weight: 600; color: var(--white); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+  .hero h1 em { font-style: italic; color: var(--terra-light); }
+  .hero-sub { color: rgba(255,255,255,0.65); font-weight: 300; font-size: 1.05rem; line-height: 1.75; margin-bottom: 2rem; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-right { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 2rem; }
+  .hero-list { display: flex; flex-direction: column; gap: 0.85rem; }
+  .hero-item { display: flex; align-items: flex-start; gap: 0.85rem; }
+  .hero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--terra-light); flex-shrink: 0; margin-top: 6px; }
+  .hero-item span { font-size: 0.97rem; color: rgba(255,255,255,0.82); line-height: 1.55; }
+  .hero-tag { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1rem; display: block; }
+
+  .service-nav { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 5%; }
+  .service-nav-inner { max-width: 1080px; margin: 0 auto; display: flex; }
+  .service-nav a { padding: 1rem 1.5rem; font-size: 0.88rem; font-weight: 500; text-decoration: none; color: var(--muted); border-bottom: 2.5px solid transparent; transition: all 0.2s; }
+  .service-nav a:hover { color: var(--green); }
+  .service-nav a.active { color: var(--green); border-bottom-color: var(--terra); }
+
+  .intro { padding: var(--section-pad) 0; background: var(--white); border-bottom: 1px solid var(--border); }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .intro-right p { color: var(--muted); font-weight: 300; font-size: 1.03rem; margin-bottom: 1rem; }
+
+  .approaches { padding: var(--section-pad) 0; background: var(--cream); }
+  .approaches-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .approach-card { background: var(--white); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
+  .approach-header { padding: 1.5rem; background: var(--green); }
+  .approach-name { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; color: var(--white); margin-bottom: 0.3rem; }
+  .approach-sub { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+  .approach-body { padding: 1.5rem; }
+  .approach-body p { font-size: 0.93rem; color: var(--muted); font-weight: 300; line-height: 1.65; margin-bottom: 0.85rem; }
+  .approach-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .approach-tag { background: rgba(43,74,60,0.07); color: var(--green); font-size: 0.75rem; font-weight: 500; border-radius: 100px; padding: 0.2rem 0.7rem; }
+
+  .grades { padding: var(--section-pad) 0; background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .grades-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .grade-card { background: var(--cream); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; }
+  .grade-level { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; color: var(--green); margin-bottom: 0.3rem; }
+  .grade-range { font-size: 0.78rem; color: var(--terra); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+  .grade-items { display: flex; flex-direction: column; gap: 0.5rem; }
+  .grade-item { font-size: 0.91rem; color: var(--muted); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.55; }
+  .grade-item::before { content: '—'; color: var(--terra); flex-shrink: 0; }
+
+  .sessions { padding: var(--section-pad) 0; background: var(--cream); }
+  .sessions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+  .session-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; }
+  .session-tag { display: inline-block; background: rgba(43,74,60,0.08); color: var(--green); font-size: 0.75rem; font-weight: 600; border-radius: 100px; padding: 0.25rem 0.85rem; margin-bottom: 0.85rem; }
+  .session-title { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; color: var(--green); margin-bottom: 0.6rem; }
+  .session-desc { font-size: 0.93rem; color: var(--muted); font-weight: 300; line-height: 1.65; margin-bottom: 1rem; }
+  .session-details { display: flex; flex-direction: column; gap: 0.4rem; }
+  .session-detail { font-size: 0.83rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+  .session-detail::before { content: '—'; color: var(--terra); }
+
+  .week { padding: var(--section-pad) 0; background: var(--green); }
+  .week h2 { color: var(--white); }
+  .week .section-label { color: rgba(255,255,255,0.5); }
+  .week .divider { background: var(--terra-light); }
+  .week-example { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 2rem; margin-top: 2.5rem; }
+  .week-family { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra-light); margin-bottom: 1.25rem; }
+  .week-row { display: grid; grid-template-columns: 120px 1fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.85rem; align-items: start; }
+  .week-row-label { font-size: 0.82rem; color: rgba(255,255,255,0.45); font-weight: 500; padding-top: 0.6rem; }
+  .week-cell { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 0.65rem 0.75rem; min-height: 56px; }
+  .week-cell-mh { background: rgba(192,122,82,0.2); border-color: rgba(192,122,82,0.3); }
+  .week-cell-name { font-size: 0.82rem; color: var(--white); font-weight: 500; margin-bottom: 0.15rem; }
+  .week-cell-time { font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+  .week-cell-empty { background: transparent; border-color: transparent; }
+  .week-headers { display: grid; grid-template-columns: 120px 1fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.75rem; }
+  .week-header-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-align: center; }
+  .week-header-label:first-child { text-align: left; }
+  .week-note { margin-top: 1.25rem; font-size: 0.85rem; color: rgba(255,255,255,0.4); font-style: italic; }
+
+  .start { padding: var(--section-pad) 0; background: var(--cream); }
+  .start-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 2.5rem; position: relative; }
+  .start-steps::before { content: ''; position: absolute; top: 28px; left: 12%; width: 76%; height: 1px; background: var(--border); z-index: 0; }
+  .start-step { position: relative; z-index: 1; }
+  .start-num { width: 56px; height: 56px; border-radius: 50%; background: var(--white); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-weight: 600; font-size: 1.1rem; color: var(--green); margin-bottom: 1.25rem; }
+  .start-step h3 { font-family: 'Lora', serif; font-size: 1rem; font-weight: 600; color: var(--green); margin-bottom: 0.4rem; }
+  .start-step p { font-size: 0.9rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+  .cta { background: var(--terra); padding: var(--section-pad) 5%; text-align: center; }
+  .btn-white { background: var(--white); color: var(--terra); padding: 0.85rem 1.8rem; border-radius: 100px; font-size: 0.92rem; font-weight: 500; text-decoration: none; transition: all 0.22s; }
+  .btn-white:hover { background: var(--cream); transform: translateY(-1px); }
+
+  footer { background: var(--text); padding: 2.5rem 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Lora', serif; font-weight: 600; font-size: 1rem; color: var(--white); }
+  footer p { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); text-decoration: none; }
+  .footer-links a:hover { color: var(--white); }
+
+  @media (max-width: 900px) {
+    .hero-inner, .intro-grid { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .approaches-grid, .grades-grid, .sessions-grid { grid-template-columns: 1fr; }
+    .start-steps { grid-template-columns: 1fr 1fr; }
+    .start-steps::before { display: none; }
+    .week-row, .week-headers { grid-template-columns: 80px repeat(5, 1fr); }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">My Homeroom</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="services-academic.html">Academic Support</a>
+    <a href="services-homeschool.html" style="color:var(--green);font-weight:500;">Homeschool Guidance</a>
+    <a href="services-enrichment.html">Enrichment</a>
+    <a href="family.html" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="service-nav">
+  <div class="service-nav-inner">
+    <a href="services-academic.html">📖 Academic Support</a>
+    <a href="services-homeschool.html" class="active">🏠 Homeschool Guidance</a>
+    <a href="services-enrichment.html">🎨 Enrichment</a>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow">My Homeroom — Charlotte, NC</span>
+      <h1>Homeschooling that feels<br><em>supported and structured.</em></h1>
+      <p class="hero-sub">Whether you are brand new to homeschooling or need a more consistent rhythm, My Homeroom connects you with experienced educators who help make home learning feel manageable, meaningful, and sustainable.</p>
+      <div class="hero-actions">
+        <a href="family.html" class="btn btn-primary">Find Your Match</a>
+        <a href="#how" class="btn-outline-white">How It Works ↓</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <span class="hero-tag">What We Help With</span>
+      <div class="hero-list">
+        <div class="hero-item"><div class="hero-dot"></div><span>Building a consistent daily structure</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Choosing and using the right curriculum</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Teaching subjects outside your comfort zone</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Co-teaching alongside the parent</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Meeting NC homeschool requirements</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Supporting multiple children at different levels</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Planning for high school and college readiness</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="intro">
+  <div class="container intro-grid">
+    <div>
+      <span class="section-label">Who This Is For</span>
+      <div class="divider"></div>
+      <h2>Homeschooling is deeply personal. <em>So is our support.</em></h2>
+    </div>
+    <div>
+      <p>Some families homeschool by choice — for religious reasons, for lifestyle flexibility, or because they believe deeply in a more individualized approach to education. Others come to homeschooling unexpectedly, pulled by a child who was struggling in a traditional setting or by circumstances that made school at home the right answer.</p>
+      <p>Whatever brought you here, the challenges are often the same — finding structure that works for your family, covering the right material, staying consistent, and knowing whether your child is truly progressing. My Homeroom's homeschool educators understand all of it.</p>
+      <p>Our educators do not teach at families. They come alongside them — working with the parent as a partner, not replacing their role, but filling in the gaps where support is most needed.</p>
+    </div>
+  </div>
+</section>
+
+<section class="approaches">
+  <div class="container">
+    <span class="section-label">Homeschool Approaches We Support</span>
+    <div class="divider"></div>
+    <h2>We work within <em>your family's philosophy.</em></h2>
+    <div class="approaches-grid">
+      <div class="approach-card">
+        <div class="approach-header">
+          <div class="approach-name">Traditional / Structured</div>
+          <div class="approach-sub">Textbook and curriculum-based learning</div>
+        </div>
+        <div class="approach-body">
+          <p>If your family uses a structured curriculum like Sonlight, Abeka, Bob Jones, or Saxon Math, our educators can step in to teach specific subjects, check comprehension, grade work, and keep the pacing on track.</p>
+          <div class="approach-tags">
+            <span class="approach-tag">Sonlight</span><span class="approach-tag">Saxon Math</span><span class="approach-tag">Abeka</span><span class="approach-tag">Bob Jones</span>
+          </div>
+        </div>
+      </div>
+      <div class="approach-card">
+        <div class="approach-header">
+          <div class="approach-name">Classical / Charlotte Mason</div>
+          <div class="approach-sub">Literature-rich, living book approach</div>
+        </div>
+        <div class="approach-body">
+          <p>Families using the Classical Conversations model, Well-Trained Mind, or Charlotte Mason methods benefit from educators who understand narration, copywork, nature study, and the value of primary sources over textbooks.</p>
+          <div class="approach-tags">
+            <span class="approach-tag">Classical Conversations</span><span class="approach-tag">Charlotte Mason</span><span class="approach-tag">Well-Trained Mind</span>
+          </div>
+        </div>
+      </div>
+      <div class="approach-card">
+        <div class="approach-header">
+          <div class="approach-name">Eclectic / Relaxed</div>
+          <div class="approach-sub">Mix-and-match or interest-led learning</div>
+        </div>
+        <div class="approach-body">
+          <p>Many Charlotte families piece together their own approach — some structured, some interest-led, some project-based. Our educators are flexible and can support whatever combination works best for your children and your household.</p>
+          <div class="approach-tags">
+            <span class="approach-tag">Interest-led</span><span class="approach-tag">Project-based</span><span class="approach-tag">Unschool-adjacent</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="grades">
+  <div class="container">
+    <span class="section-label">Grade Level Breakdowns</span>
+    <div class="divider"></div>
+    <h2>What homeschool guidance looks like at every stage</h2>
+    <div class="grades-grid">
+      <div class="grade-card">
+        <div class="grade-level">Early Homeschool Years</div>
+        <div class="grade-range">Grades K — 3</div>
+        <div class="grade-items">
+          <div class="grade-item">Building daily learning rhythms that stick</div>
+          <div class="grade-item">Teaching phonics, reading, and early math alongside the parent</div>
+          <div class="grade-item">Helping the parent understand how to present material</div>
+          <div class="grade-item">Creating a weekly schedule that is realistic for your household</div>
+          <div class="grade-item">Making learning playful without losing structure</div>
+        </div>
+      </div>
+      <div class="grade-card">
+        <div class="grade-level">Elementary Homeschool</div>
+        <div class="grade-range">Grades 4 — 6</div>
+        <div class="grade-items">
+          <div class="grade-item">Teaching specific subjects the parent finds challenging</div>
+          <div class="grade-item">Introducing writing structure and research skills</div>
+          <div class="grade-item">Keeping pace with grade-level expectations</div>
+          <div class="grade-item">Curriculum consultation — what is and is not working</div>
+          <div class="grade-item">Preparing for the transition to middle school material</div>
+        </div>
+      </div>
+      <div class="grade-card">
+        <div class="grade-level">Middle &amp; High School</div>
+        <div class="grade-range">Grades 7 — 12</div>
+        <div class="grade-items">
+          <div class="grade-item">Teaching advanced subjects outside the parent's expertise</div>
+          <div class="grade-item">Building a transcript and credit system for high school</div>
+          <div class="grade-item">College-prep planning and dual enrollment guidance</div>
+          <div class="grade-item">Standardized test preparation and documentation</div>
+          <div class="grade-item">Ensuring NC homeschool annual testing requirements are met</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sessions">
+  <div class="container">
+    <span class="section-label">Example Session Descriptions</span>
+    <div class="divider"></div>
+    <h2>What a real homeschool guidance session looks like</h2>
+    <div class="sessions-grid">
+      <div class="session-card">
+        <span class="session-tag">New Family · Curriculum Consultation</span>
+        <div class="session-title">Building the Foundation — First Session</div>
+        <p class="session-desc">The educator meets with both parent and child to review the family's goals, the child's current level, and the parent's available time and comfort with teaching. Together they review two or three curriculum options, discuss what a realistic daily schedule looks like, and leave with a clear starting plan. The parent receives a written summary by email.</p>
+        <div class="session-details">
+          <div class="session-detail">Duration: 90 minutes</div>
+          <div class="session-detail">Participants: Parent and child</div>
+          <div class="session-detail">Goal: Clear curriculum plan and daily schedule</div>
+        </div>
+      </div>
+      <div class="session-card">
+        <span class="session-tag">Grade 4 · Co-Teaching Session</span>
+        <div class="session-title">Teaching Alongside the Parent</div>
+        <p class="session-desc">The parent is present and learning as the educator teaches a new math concept to their child. The educator models how to introduce the topic, how to check for understanding, and how to practice. The parent observes and takes notes so they can continue the instruction independently the next day. This is not tutoring — it is teaching the teacher.</p>
+        <div class="session-details">
+          <div class="session-detail">Duration: 75 minutes</div>
+          <div class="session-detail">Participants: Parent and child</div>
+          <div class="session-detail">Goal: Build the parent's confidence to teach independently</div>
+        </div>
+      </div>
+      <div class="session-card">
+        <span class="session-tag">Grade 9 · High School Planning</span>
+        <div class="session-title">Building a High School Transcript</div>
+        <p class="session-desc">The educator helps the parent understand how to structure four years of high school homeschool into a formal transcript — which subjects count for which credits, how to document grades, how dual enrollment works at Central Piedmont Community College, and what colleges expect from homeschool applicants. The family leaves with a four-year course plan.</p>
+        <div class="session-details">
+          <div class="session-detail">Duration: 90 minutes</div>
+          <div class="session-detail">Participants: Parent (student optional)</div>
+          <div class="session-detail">Goal: Complete 4-year academic plan and transcript template</div>
+        </div>
+      </div>
+      <div class="session-card">
+        <span class="session-tag">Multiple Children · Routine Session</span>
+        <div class="session-title">Rotating Through Three Grade Levels</div>
+        <p class="session-desc">The educator spends 25 minutes with each of three children at different grade levels — starting with the youngest on phonics while the older two work independently, then moving to the middle child for math, then the oldest for writing feedback. The parent oversees the household flow. The educator leaves a brief written summary of each child's work.</p>
+        <div class="session-details">
+          <div class="session-detail">Duration: 90 minutes</div>
+          <div class="session-detail">Participants: Educator, 3 children, parent</div>
+          <div class="session-detail">Goal: Meaningful individual time with each child</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="week" id="how">
+  <div class="container">
+    <span class="section-label">What a Typical Week Looks Like</span>
+    <div class="divider"></div>
+    <h2>A sample homeschool week — two children</h2>
+    <div class="week-example">
+      <div class="week-family">Sample Family · Two Children: Grade 2 and Grade 6 · My Homeroom Educator 3x/week</div>
+      <div class="week-headers">
+        <div class="week-header-label">Role</div>
+        <div class="week-header-label">Mon</div>
+        <div class="week-header-label">Tue</div>
+        <div class="week-header-label">Wed</div>
+        <div class="week-header-label">Thu</div>
+        <div class="week-header-label">Fri</div>
+      </div>
+      <div class="week-row">
+        <div class="week-row-label">My Homeroom</div>
+        <div class="week-cell week-cell-mh"><div class="week-cell-name">Both children</div><div class="week-cell-time">9–10:30am</div></div>
+        <div class="week-cell week-cell-empty"></div>
+        <div class="week-cell week-cell-mh"><div class="week-cell-name">Both children</div><div class="week-cell-time">9–10:30am</div></div>
+        <div class="week-cell week-cell-empty"></div>
+        <div class="week-cell week-cell-mh"><div class="week-cell-name">Both children</div><div class="week-cell-time">9–10:30am</div></div>
+      </div>
+      <div class="week-row">
+        <div class="week-row-label">Parent-led</div>
+        <div class="week-cell"><div class="week-cell-name">Afternoon subjects</div></div>
+        <div class="week-cell"><div class="week-cell-name">Full day parent-led</div></div>
+        <div class="week-cell"><div class="week-cell-name">Afternoon subjects</div></div>
+        <div class="week-cell"><div class="week-cell-name">Full day parent-led</div></div>
+        <div class="week-cell"><div class="week-cell-name">Light / projects</div></div>
+      </div>
+      <p class="week-note">On My Homeroom session days, the educator handles the two most challenging subjects for each child. The parent builds on those lessons independently on the other days.</p>
+    </div>
+  </div>
+</section>
+
+<section class="start">
+  <div class="container">
+    <span class="section-label">How to Get Started</span>
+    <div class="divider"></div>
+    <h2>Starting is easier than <em>you might think.</em></h2>
+    <div class="start-steps">
+      <div class="start-step">
+        <div class="start-num">1</div>
+        <h3>Submit your intake form</h3>
+        <p>Tell us about your children, your current homeschool setup (or that you are just starting), what is working and what is not, and what kind of help would make the biggest difference.</p>
+      </div>
+      <div class="start-step">
+        <div class="start-num">2</div>
+        <h3>We review your family's situation</h3>
+        <p>Homeschool families often need a more consultative first conversation. We read your intake form carefully and match you with an educator who has experience with your specific situation — not just any homeschool educator.</p>
+      </div>
+      <div class="start-step">
+        <div class="start-num">3</div>
+        <h3>A planning conversation</h3>
+        <p>Most homeschool guidance engagements begin with a 60–90 minute planning session — the educator, the parent, and often the children together — to understand the household and build a real plan before regular sessions begin.</p>
+      </div>
+      <div class="start-step">
+        <div class="start-num">4</div>
+        <h3>Regular sessions begin</h3>
+        <p>With a plan in place, regular sessions start. Frequency varies — most homeschool families find 2–3 sessions per week provides the right balance of support and independence. We adjust as you go.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <span class="section-label">Ready to Begin?</span>
+    <h2 style="color:var(--white);font-family:'Lora',serif;font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:1rem;">Find the right homeschool support for your family</h2>
+    <p style="color:rgba(255,255,255,0.8);font-weight:300;max-width:460px;margin:0 auto 2.5rem;">Tell us about your family and we will take it from there. Every response is read personally — we respond within one business day.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="family.html" class="btn-white">Submit Your Intake Form →</a>
+      <a href="index.html" class="btn-outline-white">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">My Homeroom</span>
+  <p>© 2026 My Homeroom LLC · Charlotte, NC · All rights reserved.</p>
+  <div class="footer-links">
+    <a href="services-academic.html">Academic Support</a>
+    <a href="services-enrichment.html">Enrichment</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+</footer>
+
+</body>
+</html>
