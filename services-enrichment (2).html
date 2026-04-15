@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Enrichment — My Homeroom Charlotte</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root { --cream: #FAF6EF; --green: #2B4A3C; --green-light: #3D6352; --terra: #C07A52; --terra-light: #D4956F; --text: #1C1C18; --muted: #5E5E52; --border: #E2DBCF; --white: #FFFFFF; --section-pad: clamp(4rem,8vw,7rem); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 5%; background: rgba(250,246,239,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Lora', serif; font-weight: 600; font-size: 1.15rem; color: var(--green); text-decoration: none; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.88rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta { background: var(--green); color: var(--white) !important; padding: 0.5rem 1.2rem; border-radius: 100px; font-weight: 500 !important; }
+  .btn { display: inline-block; padding: 0.85rem 1.8rem; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500; text-decoration: none; transition: all 0.22s ease; }
+  .btn-primary { background: var(--green); color: var(--white); box-shadow: 0 2px 14px rgba(43,74,60,0.25); }
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-1px); }
+  .btn-outline-white { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.4); padding: 0.85rem 1.8rem; border-radius: 100px; font-size: 0.92rem; font-weight: 500; text-decoration: none; transition: all 0.22s; }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 5%; }
+  .section-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terra); margin-bottom: 0.75rem; display: block; }
+  .divider { width: 40px; height: 2.5px; background: var(--terra); margin-bottom: 1.75rem; border-radius: 2px; }
+  h2 { font-family: 'Lora', serif; font-size: clamp(1.9rem,4vw,2.6rem); font-weight: 600; line-height: 1.22; letter-spacing: -0.02em; color: var(--green); margin-bottom: 1rem; }
+  h2 em { font-style: italic; }
+
+  .hero { background: var(--terra); padding: 6rem 5% 5rem; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 85% 30%, rgba(255,255,255,0.08) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 10% 80%, rgba(43,74,60,0.15) 0%, transparent 60%); }
+  .hero-inner { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .hero-eyebrow { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 1rem; display: block; }
+  .hero h1 { font-family: 'Lora', serif; font-size: clamp(2.4rem,5vw,3.6rem); font-weight: 600; color: var(--white); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+  .hero h1 em { font-style: italic; color: rgba(255,255,255,0.7); }
+  .hero-sub { color: rgba(255,255,255,0.75); font-weight: 300; font-size: 1.05rem; line-height: 1.75; margin-bottom: 2rem; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-white-solid { background: var(--white); color: var(--terra); padding: 0.85rem 1.8rem; border-radius: 100px; font-size: 0.92rem; font-weight: 500; text-decoration: none; transition: all 0.22s; }
+  .btn-white-solid:hover { background: var(--cream); transform: translateY(-1px); }
+  .hero-right { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 2rem; }
+  .hero-list { display: flex; flex-direction: column; gap: 0.85rem; }
+  .hero-item { display: flex; align-items: flex-start; gap: 0.85rem; }
+  .hero-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.6); flex-shrink: 0; margin-top: 6px; }
+  .hero-item span { font-size: 0.97rem; color: rgba(255,255,255,0.88); }
+  .hero-tag { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem; display: block; }
+
+  .service-nav { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 5%; }
+  .service-nav-inner { max-width: 1080px; margin: 0 auto; display: flex; }
+  .service-nav a { padding: 1rem 1.5rem; font-size: 0.88rem; font-weight: 500; text-decoration: none; color: var(--muted); border-bottom: 2.5px solid transparent; transition: all 0.2s; }
+  .service-nav a:hover { color: var(--green); }
+  .service-nav a.active { color: var(--green); border-bottom-color: var(--terra); }
+
+  .intro { padding: var(--section-pad) 0; background: var(--white); border-bottom: 1px solid var(--border); }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .intro-right p { color: var(--muted); font-weight: 300; font-size: 1.03rem; margin-bottom: 1rem; }
+
+  .disciplines { padding: var(--section-pad) 0; background: var(--cream); }
+  .disciplines-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .discipline-card { background: var(--white); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; display: grid; grid-template-columns: auto 1fr; }
+  .discipline-icon { background: var(--green); padding: 2rem 1.5rem; display: flex; align-items: flex-start; justify-content: center; font-size: 2rem; }
+  .discipline-body { padding: 1.75rem; }
+  .discipline-name { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 600; color: var(--green); margin-bottom: 0.5rem; }
+  .discipline-desc { font-size: 0.93rem; color: var(--muted); font-weight: 300; line-height: 1.65; margin-bottom: 1rem; }
+  .discipline-options { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .discipline-tag { background: rgba(192,122,82,0.1); color: var(--terra); font-size: 0.75rem; font-weight: 600; border-radius: 100px; padding: 0.2rem 0.75rem; }
+
+  .grades { padding: var(--section-pad) 0; background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .grades-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .grade-card { background: var(--cream); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; }
+  .grade-level { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; color: var(--green); margin-bottom: 0.3rem; }
+  .grade-range { font-size: 0.78rem; color: var(--terra); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+  .grade-items { display: flex; flex-direction: column; gap: 0.5rem; }
+  .grade-item { font-size: 0.91rem; color: var(--muted); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.55; }
+  .grade-item::before { content: '—'; color: var(--terra); flex-shrink: 0; }
+
+  .sessions { padding: var(--section-pad) 0; background: var(--cream); }
+  .sessions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+  .session-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; }
+  .session-tag { display: inline-block; background: rgba(192,122,82,0.1); color: var(--terra); font-size: 0.75rem; font-weight: 600; border-radius: 100px; padding: 0.25rem 0.85rem; margin-bottom: 0.85rem; }
+  .session-title { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; color: var(--green); margin-bottom: 0.6rem; }
+  .session-desc { font-size: 0.93rem; color: var(--muted); font-weight: 300; line-height: 1.65; margin-bottom: 1rem; }
+  .session-details { display: flex; flex-direction: column; gap: 0.4rem; }
+  .session-detail { font-size: 0.83rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+  .session-detail::before { content: '—'; color: var(--terra); }
+
+  .week { padding: var(--section-pad) 0; background: var(--green); }
+  .week h2 { color: var(--white); }
+  .week .section-label { color: rgba(255,255,255,0.5); }
+  .week .divider { background: var(--terra-light); }
+  .week-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .week-profile { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.75rem; }
+  .week-profile-name { font-family: 'Lora', serif; font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 0.25rem; }
+  .week-profile-grade { font-size: 0.78rem; color: var(--terra-light); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .week-session { background: rgba(192,122,82,0.2); border: 1px solid rgba(192,122,82,0.3); border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 0.65rem; }
+  .week-session-name { font-size: 0.9rem; font-weight: 500; color: var(--white); margin-bottom: 0.2rem; }
+  .week-session-detail { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+  .week-note-small { margin-top: 1rem; font-size: 0.82rem; color: rgba(255,255,255,0.4); font-style: italic; line-height: 1.55; }
+
+  .start { padding: var(--section-pad) 0; background: var(--cream); }
+  .start-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 2.5rem; position: relative; }
+  .start-steps::before { content: ''; position: absolute; top: 28px; left: 12%; width: 76%; height: 1px; background: var(--border); z-index: 0; }
+  .start-step { position: relative; z-index: 1; }
+  .start-num { width: 56px; height: 56px; border-radius: 50%; background: var(--white); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-weight: 600; font-size: 1.1rem; color: var(--green); margin-bottom: 1.25rem; }
+  .start-step h3 { font-family: 'Lora', serif; font-size: 1rem; font-weight: 600; color: var(--green); margin-bottom: 0.4rem; }
+  .start-step p { font-size: 0.9rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+  .cta { background: var(--terra); padding: var(--section-pad) 5%; text-align: center; }
+  .btn-white { background: var(--white); color: var(--terra); padding: 0.85rem 1.8rem; border-radius: 100px; font-size: 0.92rem; font-weight: 500; text-decoration: none; transition: all 0.22s; }
+  .btn-white:hover { background: var(--cream); transform: translateY(-1px); }
+
+  footer { background: var(--text); padding: 2.5rem 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Lora', serif; font-weight: 600; font-size: 1rem; color: var(--white); }
+  footer p { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); text-decoration: none; }
+  .footer-links a:hover { color: var(--white); }
+
+  @media (max-width: 900px) {
+    .hero-inner, .intro-grid { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .disciplines-grid, .grades-grid, .sessions-grid, .week-grid { grid-template-columns: 1fr; }
+    .discipline-card { grid-template-columns: 1fr; }
+    .discipline-icon { padding: 1.25rem; font-size: 1.5rem; }
+    .start-steps { grid-template-columns: 1fr 1fr; }
+    .start-steps::before { display: none; }
+    .nav-links { display: none; }
+  }
+
+  /* MOBILE NAV */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; z-index: 200; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--green); border-radius: 2px; transition: all 0.3s ease; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-nav { display: none; position: fixed; inset: 0; background: rgba(250,246,239,0.98); backdrop-filter: blur(16px); z-index: 150; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 600; color: var(--green); text-decoration: none; transition: color 0.2s; }
+  .mobile-nav a:hover { color: var(--terra); }
+  .mobile-nav .mobile-cta { background: var(--green); color: var(--white) !important; padding: 0.85rem 2rem; border-radius: 100px; font-size: 1.1rem !important; }
+  .mobile-nav-close { position: absolute; top: 1.25rem; right: 5%; font-size: 1.5rem; color: var(--muted); cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; }
+  @media (max-width: 900px) { .hamburger { display: flex; } }
+
+  @media (max-width: 480px) {
+    nav { padding: 0.85rem 5%; }
+    .hero { padding: 2.5rem 5% 2rem; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { width: 100%; text-align: center; }
+    .section-pad-outer { padding: clamp(3rem,6vw,5rem) 5%; }
+    .trust-strip-inner { gap: 1rem; }
+    .trust-item { font-size: 0.78rem; }
+    .service-card { padding: 1.5rem; }
+    .faq-q { font-size: 0.92rem; padding: 1rem 1.25rem; }
+    .footer-grid { gap: 2rem; }
+    .cta-section { padding: 3.5rem 5%; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">My Homeroom</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="services-academic.html">Academic Support</a>
+    <a href="services-homeschool.html">Homeschool Guidance</a>
+    <a href="services-enrichment.html" style="color:var(--green);font-weight:500;">Enrichment</a>
+    <a href="family.html" class="nav-cta">Get Started</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-close">&#10005;</button>
+  <a href="index.html">Home</a>
+  <a href="services-academic.html">Academic Support</a>
+  <a href="services-homeschool.html">Homeschool Guidance</a>
+  <a href="get-started.html" class="mobile-cta">Get Started</a>
+</div>
+
+<div class="service-nav">
+  <div class="service-nav-inner">
+    <a href="services-academic.html">📖 Academic Support</a>
+    <a href="services-homeschool.html">🏠 Homeschool Guidance</a>
+    <a href="services-enrichment.html" class="active">🎨 Enrichment</a>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow">My Homeroom — Charlotte, NC</span>
+      <h1>Nurture what makes your child<br><em>uniquely themselves.</em></h1>
+      <p class="hero-sub">Enrichment is not extra — it is essential. Art, music, creative writing, and languages develop the whole child in ways that academic instruction alone cannot. My Homeroom connects your family with skilled, passionate instructors who come to you.</p>
+      <div class="hero-actions">
+        <a href="get-started.html" class="btn-white-solid">Find Your Match</a>
+        <a href="#how" class="btn-outline-white">How It Works ↓</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <span class="hero-tag">Enrichment Areas We Offer</span>
+      <div class="hero-list">
+        <div class="hero-item"><div class="hero-dot"></div><span>Visual Art — drawing, painting, mixed media</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Music — piano, guitar, voice, music theory</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Creative Writing — fiction, poetry, storytelling</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Foreign Languages — Spanish, French, Mandarin and more</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Drama and performance</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Photography and digital media</span></div>
+        <div class="hero-item"><div class="hero-dot"></div><span>Coding and computational thinking</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="intro">
+  <div class="container intro-grid">
+    <div>
+      <span class="section-label">Why Enrichment at Home</span>
+      <div class="divider"></div>
+      <h2>More than a class. <em>A real relationship with a subject.</em></h2>
+    </div>
+    <div>
+      <p>Group lessons and after-school programs have their place — but they move at the pace of the group. A child who is genuinely passionate about music, or showing real talent in art, or falling in love with a language, deserves instruction that can move at their pace and go as deep as their curiosity takes them.</p>
+      <p>One-on-one enrichment instruction in your home creates the conditions for that kind of growth. There are no distractions, no waiting for other students, no performing for an audience before the child is ready. Just a skilled instructor, a motivated child, and the space to develop something meaningful.</p>
+      <p>Enrichment sessions through My Homeroom are also flexible in a way that programs rarely are — the instructor adapts to the child's interests and energy each session, building on what genuinely excites them.</p>
+    </div>
+  </div>
+</section>
+
+<section class="disciplines">
+  <div class="container">
+    <span class="section-label">What We Offer</span>
+    <div class="divider"></div>
+    <h2>Enrichment areas available <em>in Charlotte</em></h2>
+    <div class="disciplines-grid">
+      <div class="discipline-card">
+        <div class="discipline-icon">🎨</div>
+        <div class="discipline-body">
+          <div class="discipline-name">Visual Art</div>
+          <p class="discipline-desc">From foundational drawing skills to mixed media exploration, our art educators meet children where they are and build genuine technical skill alongside creative confidence. Sessions happen at your kitchen table, in your child's space — no studio required.</p>
+          <div class="discipline-options">
+            <span class="discipline-tag">Drawing</span><span class="discipline-tag">Watercolor</span><span class="discipline-tag">Acrylic painting</span><span class="discipline-tag">Illustration</span><span class="discipline-tag">Mixed media</span><span class="discipline-tag">Art history</span>
+          </div>
+        </div>
+      </div>
+      <div class="discipline-card">
+        <div class="discipline-icon">🎵</div>
+        <div class="discipline-body">
+          <div class="discipline-name">Music</div>
+          <p class="discipline-desc">Private music instruction at home is one of the most effective forms of enrichment for children at any age. Our music educators bring their own instruments and materials when needed. Lessons are structured around the child's goals — whether that is learning to read music, preparing for a recital, or simply developing a lifelong love of playing.</p>
+          <div class="discipline-options">
+            <span class="discipline-tag">Piano</span><span class="discipline-tag">Guitar</span><span class="discipline-tag">Voice</span><span class="discipline-tag">Music theory</span><span class="discipline-tag">Ukulele</span><span class="discipline-tag">Drums</span>
+          </div>
+        </div>
+      </div>
+      <div class="discipline-card">
+        <div class="discipline-icon">✍️</div>
+        <div class="discipline-body">
+          <div class="discipline-name">Creative Writing</div>
+          <p class="discipline-desc">Creative writing instruction builds vocabulary, imagination, and communication skills — but more importantly, it gives children a voice. Our instructors work across all forms, from short stories and poetry to journaling and world-building. This is one of the most requested enrichment subjects for children who love to read but have not yet found their confidence as writers.</p>
+          <div class="discipline-options">
+            <span class="discipline-tag">Fiction</span><span class="discipline-tag">Poetry</span><span class="discipline-tag">Journaling</span><span class="discipline-tag">Storytelling</span><span class="discipline-tag">Screenwriting</span>
+          </div>
+        </div>
+      </div>
+      <div class="discipline-card">
+        <div class="discipline-icon">🌎</div>
+        <div class="discipline-body">
+          <div class="discipline-name">Foreign Languages</div>
+          <p class="discipline-desc">Children acquire language most naturally in conversational, low-pressure settings — which makes home-based language instruction particularly effective. Our language educators are either native speakers or highly proficient, and focus on conversational confidence alongside vocabulary and grammar. We can work within a curriculum the family already uses or design sessions from scratch.</p>
+          <div class="discipline-options">
+            <span class="discipline-tag">Spanish</span><span class="discipline-tag">French</span><span class="discipline-tag">Mandarin</span><span class="discipline-tag">German</span><span class="discipline-tag">American Sign Language</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="grades">
+  <div class="container">
+    <span class="section-label">Grade Level Breakdowns</span>
+    <div class="divider"></div>
+    <h2>Enrichment at every age looks <em>a little different.</em></h2>
+    <div class="grades-grid">
+      <div class="grade-card">
+        <div class="grade-level">Early Childhood</div>
+        <div class="grade-range">Ages 4 — 7</div>
+        <div class="grade-items">
+          <div class="grade-item">Play-based art and music exploration — no pressure, just joy</div>
+          <div class="grade-item">Short sessions (30–45 min) with lots of variety and movement</div>
+          <div class="grade-item">Language sessions built around songs, games, and simple conversation</div>
+          <div class="grade-item">Storytelling and picture book-based creative writing</div>
+          <div class="grade-item">Building a love of the subject before technical skill</div>
+        </div>
+      </div>
+      <div class="grade-card">
+        <div class="grade-level">Elementary &amp; Middle</div>
+        <div class="grade-range">Ages 8 — 13</div>
+        <div class="grade-items">
+          <div class="grade-item">Introduction of real technique alongside continued joy and play</div>
+          <div class="grade-item">Music students begin reading notation and developing repertoire</div>
+          <div class="grade-item">Art students work on observational drawing and color theory</div>
+          <div class="grade-item">Language students build conversational vocabulary and simple grammar</div>
+          <div class="grade-item">Creative writing students develop story structure and character</div>
+        </div>
+      </div>
+      <div class="grade-card">
+        <div class="grade-level">High School</div>
+        <div class="grade-range">Ages 14 — 18</div>
+        <div class="grade-items">
+          <div class="grade-item">Advanced technique and portfolio development for college applications</div>
+          <div class="grade-item">Music students prepare audition pieces and explore music theory</div>
+          <div class="grade-item">Art students build portfolios for AP Art or college submission</div>
+          <div class="grade-item">Language students achieve conversational fluency and study abroad prep</div>
+          <div class="grade-item">Creative writing students develop literary voice and submission-ready work</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sessions">
+  <div class="container">
+    <span class="section-label">Example Session Descriptions</span>
+    <div class="divider"></div>
+    <h2>What a real enrichment session looks like</h2>
+    <div class="sessions-grid">
+      <div class="session-card">
+        <span class="session-tag">Age 8 · Visual Art</span>
+        <div class="session-title">Observational Drawing — Learning to Really See</div>
+        <p class="session-desc">The educator brings a simple still life setup — a bowl, an apple, a cup. The child sketches for 10 minutes without guidance while the educator observes how they approach the subject. Then the educator introduces one technique — how to use light and shadow to create depth — and the child redraws the same scene. The session ends with the child identifying the one thing they are most proud of in their drawing.</p>
+        <div class="session-details">
+          <div class="session-detail">Duration: 60 minutes</div>
+          <div class="session-detail">Materials: Educator brings pencils, paper, still life objects</div>
+          <div class="session-detail">Goal: Observation skill and basic shading technique</div>
+        </div>
+      </div>
+      <div class="session-card">
+        <span class="session-tag">Age 10 · Piano</span>
+        <div class="session-title">Building Repertoire and Reading Music</div>
+        <p class="session-desc">The session opens with scales and a warm-up piece the student already knows well — building confidence before tackling something new. The educator introduces a new piece, playing it through once so the student hears the finished version. They work through the first section hands separately, then together. The session ends with a specific practice assignment so the student knows exactly what to work on before next week.</p>
+        <div class="session-details">
+          <div class="session-detail">Duration: 45–60 minutes</div>
+          <div class="session-detail">Materials: Sheet music, student's piano</div>
+          <div class="session-detail">Goal: New piece introduction and practice habits</div>
+        </div>
+      </div>
+      <div class="session-card">
+        <span class="session-tag">Age 11 · Creative Writing</span>
+        <div class="session-title">Building a Character From the Inside Out</div>
+        <p class="session-desc">The educator leads the student through a character-building exercise — not physical description first, but internal: what does this character want most? What are they afraid of? What do they lie about? The student creates a character profile and then writes a short scene in which the character makes a decision that reveals something true about who they are. No plot required — just character.</p>
+        <div class="session-details">
+          <div class="session-detail">Duration: 60 minutes</div>
+          <div class="session-detail">Materials: Notebook or laptop</div>
+          <div class="session-detail">Goal: Deep character development as a writing tool</div>
+        </div>
+      </div>
+      <div class="session-card">
+        <span class="session-tag">Age 13 · Spanish</span>
+        <div class="session-title">Conversational Spanish — Real Life Scenarios</div>
+        <p class="session-desc">The session is conducted almost entirely in Spanish. The educator creates a scenario — you are at a market in Mexico City, you need to buy three things and ask for directions. The student navigates the scenario using vocabulary they know, and the educator gently corrects grammar in context — not stopping the conversation to lecture, but modeling the correct form naturally. New vocabulary is introduced only when needed by the scenario.</p>
+        <div class="session-details">
+          <div class="session-detail">Duration: 60 minutes</div>
+          <div class="session-detail">Materials: None required</div>
+          <div class="session-detail">Goal: Conversational fluency and real-context vocabulary</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="week" id="how">
+  <div class="container">
+    <span class="section-label">What a Typical Week Looks Like</span>
+    <div class="divider"></div>
+    <h2>Three families — three different enrichment rhythms</h2>
+    <div class="week-grid">
+      <div class="week-profile">
+        <div class="week-profile-name">The Okafor Family</div>
+        <div class="week-profile-grade">Age 8 · 1 session/week</div>
+        <div class="week-session">
+          <div class="week-session-name">Piano Lesson</div>
+          <div class="week-session-detail">Wednesday · 3:30–4:15pm</div>
+        </div>
+        <div class="week-session">
+          <div class="week-session-name">Independent Practice</div>
+          <div class="week-session-detail">Daily · 15–20 minutes</div>
+        </div>
+        <p class="week-note-small">One session per week plus consistent daily practice. This family started with one subject and plans to add art in the fall.</p>
+      </div>
+      <div class="week-profile">
+        <div class="week-profile-name">The Rivera Family</div>
+        <div class="week-profile-grade">Ages 10 &amp; 12 · 2 sessions/week</div>
+        <div class="week-session">
+          <div class="week-session-name">Spanish — Both Children</div>
+          <div class="week-session-detail">Tuesday · 4:00–5:00pm</div>
+        </div>
+        <div class="week-session">
+          <div class="week-session-name">Creative Writing — Age 12</div>
+          <div class="week-session-detail">Thursday · 4:00–5:00pm</div>
+        </div>
+        <p class="week-note-small">Spanish sessions serve both children together. The older child has an additional creative writing session. Different educators for each subject.</p>
+      </div>
+      <div class="week-profile">
+        <div class="week-profile-name">The Brennan Family</div>
+        <div class="week-profile-grade">Age 15 · Portfolio-focused</div>
+        <div class="week-session">
+          <div class="week-session-name">Visual Art — Portfolio</div>
+          <div class="week-session-detail">Monday · 3:30–5:00pm</div>
+        </div>
+        <div class="week-session">
+          <div class="week-session-name">Studio Work</div>
+          <div class="week-session-detail">Thu &amp; Sat · Independent</div>
+        </div>
+        <p class="week-note-small">High school student building an art portfolio for college applications. Longer sessions with significant independent studio time between them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="start">
+  <div class="container">
+    <span class="section-label">How to Get Started</span>
+    <div class="divider"></div>
+    <h2>Find the right enrichment educator <em>for your child.</em></h2>
+    <div class="start-steps">
+      <div class="start-step">
+        <div class="start-num">1</div>
+        <h3>Submit your intake form</h3>
+        <p>Tell us which enrichment subject your child is interested in, their age, their experience level, and what kind of instructor you are looking for. If you are not sure where to start, just tell us what your child loves.</p>
+      </div>
+      <div class="start-step">
+        <div class="start-num">2</div>
+        <h3>We find a specialist</h3>
+        <p>Enrichment educators are specialists, not generalists. We match your child with an instructor who has genuine expertise in the specific subject — not someone who dabbles in it. This takes a little more care and we take it seriously.</p>
+      </div>
+      <div class="start-step">
+        <div class="start-num">3</div>
+        <h3>A brief introduction</h3>
+        <p>For enrichment especially, personality fit matters. Before the first real session, we can arrange a brief 15-minute introduction between the instructor and your child — so the relationship starts on the right foot.</p>
+      </div>
+      <div class="start-step">
+        <div class="start-num">4</div>
+        <h3>First session in your home</h3>
+        <p>The instructor comes to you. No driving to a studio, no waiting rooms. Just a skilled educator, your child, and the subject they love — in the most comfortable place in the world for your child.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <span class="section-label">Ready to Begin?</span>
+    <h2 style="color:var(--white);font-family:'Lora',serif;font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:1rem;">Find the right enrichment educator for your child</h2>
+    <p style="color:rgba(255,255,255,0.8);font-weight:300;max-width:480px;margin:0 auto 2.5rem;">Every child has something they love. My Homeroom helps you find the right person to nurture it — in your home, on your schedule.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="get-started.html" class="btn-white">Submit Your Intake Form →</a>
+      <a href="index.html" class="btn-outline-white">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">My Homeroom</span>
+  <p>© 2026 My Homeroom LLC · Charlotte, NC · All rights reserved.</p>
+  <div class="footer-links">
+    <a href="services-academic.html">Academic Support</a>
+    <a href="services-homeschool.html">Homeschool Guidance</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileClose = document.getElementById('mobile-close');
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    mobileClose.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
+</body>
+</html>
