@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Find Your Plan — My Homeroom</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #FAF6EF;
+    --green: #2B4A3C;
+    --green-light: #3D6352;
+    --terra: #C07A52;
+    --terra-light: #D4956F;
+    --text: #1C1C18;
+    --muted: #5E5E52;
+    --border: #E2DBCF;
+    --white: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 5%;
+    background: rgba(250,246,239,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Lora', serif; font-weight: 600; font-size: 1.15rem; color: var(--green); text-decoration: none; }
+  .nav-back { font-size: 0.88rem; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+  .nav-back:hover { color: var(--green); }
+  .nav-back::before { content: "←"; }
+
+  /* HERO */
+  .hero {
+    background: var(--green);
+    padding: 4rem 5% 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+    top: -200px; right: -100px;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+    margin-bottom: 1rem; display: block;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem,4vw,3rem);
+    font-weight: 600; color: var(--white);
+    line-height: 1.2; letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--terra-light); }
+  .hero p { font-size: 1rem; color: rgba(255,255,255,0.6); font-weight: 300; max-width: 480px; margin: 0 auto; }
+
+  /* PROGRESS BAR */
+  .progress-wrap {
+    max-width: 680px; margin: 2.5rem auto 0;
+    position: relative; z-index: 1;
+  }
+  .progress-bar-bg {
+    height: 4px; background: rgba(255,255,255,0.15);
+    border-radius: 2px; overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%; background: var(--terra-light);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-label {
+    display: flex; justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.78rem; color: rgba(255,255,255,0.4);
+  }
+
+  /* QUIZ CONTAINER */
+  .quiz-outer {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3rem 5% 5rem;
+  }
+
+  /* QUESTION CARD */
+  .question-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 24px rgba(43,74,60,0.08);
+    display: none;
+    animation: fadeUp 0.4s ease both;
+  }
+  .question-card.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-step {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--terra);
+    margin-bottom: 0.75rem; display: block;
+  }
+  .q-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.25rem,3vw,1.6rem);
+    font-weight: 600; color: var(--green);
+    line-height: 1.3; margin-bottom: 0.5rem;
+  }
+  .q-sub {
+    font-size: 0.93rem; color: var(--muted);
+    font-weight: 300; margin-bottom: 1.75rem;
+  }
+
+  /* OPTIONS */
+  .options { display: flex; flex-direction: column; gap: 0.75rem; }
+  .option {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--cream);
+    position: relative;
+  }
+  .option:hover {
+    border-color: var(--green);
+    background: var(--white);
+    box-shadow: 0 2px 12px rgba(43,74,60,0.08);
+  }
+  .option.selected {
+    border-color: var(--green);
+    background: rgba(43,74,60,0.06);
+  }
+  .option-radio {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .option.selected .option-radio {
+    border-color: var(--green);
+    background: var(--green);
+  }
+  .option.selected .option-radio::after {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--white);
+  }
+  .option-content {}
+  .option-label {
+    font-size: 0.97rem; font-weight: 500; color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+  .option-desc {
+    font-size: 0.84rem; color: var(--muted); font-weight: 300;
+  }
+
+  /* MULTI SELECT */
+  .option.multi .option-radio {
+    border-radius: 6px;
+  }
+  .option.multi.selected .option-radio::after {
+    content: '✓';
+    width: auto; height: auto;
+    background: none;
+    font-size: 11px; font-weight: bold;
+    color: var(--white);
+    border-radius: 0;
+  }
+
+  /* NEXT BUTTON */
+  .btn-next {
+    margin-top: 1.75rem;
+    width: 100%;
+    padding: 1rem;
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .btn-next:hover { background: var(--green-light); transform: translateY(-1px); }
+  .btn-next:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; transform: none; }
+  .btn-next::after { content: '→'; font-size: 1.1rem; }
+
+  /* BACK LINK */
+  .btn-back {
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+    font-size: 0.88rem; color: var(--muted);
+    cursor: pointer;
+    background: none; border: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s;
+  }
+  .btn-back:hover { color: var(--green); }
+
+  /* RESULT CARDS */
+  .result-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(43,74,60,0.08);
+    display: none;
+    animation: fadeUp 0.5s ease both;
+  }
+  .result-card.active { display: block; }
+
+  .result-header {
+    padding: 2.5rem;
+    background: var(--green);
+    position: relative;
+    overflow: hidden;
+  }
+  .result-header::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    bottom: -100px; right: -80px;
+  }
+  .result-match {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+    margin-bottom: 0.5rem; display: block;
+  }
+  .result-tier {
+    font-family: 'Lora', serif;
+    font-size: 1.75rem; font-weight: 600; color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+  .result-tagline {
+    font-size: 0.97rem; color: rgba(255,255,255,0.65);
+    font-weight: 300;
+  }
+  .result-price-row {
+    display: flex; align-items: baseline; gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .result-price {
+    font-family: 'Lora', serif;
+    font-size: 3rem; font-weight: 700; color: var(--white);
+    line-height: 1;
+  }
+  .result-price-sub {
+    font-size: 0.9rem; color: rgba(255,255,255,0.55);
+  }
+
+  .result-body { padding: 2rem 2.5rem 2.5rem; }
+
+  .result-includes {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--terra);
+    margin-bottom: 1rem; display: block;
+  }
+  .result-items { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.75rem; }
+  .result-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.95rem; color: var(--text);
+  }
+  .result-check {
+    width: 22px; height: 22px; border-radius: 6px;
+    background: rgba(43,74,60,0.09);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; color: var(--green); font-weight: bold;
+    flex-shrink: 0; margin-top: 1px;
+  }
+
+  .result-note {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--terra);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.25rem;
+    font-size: 0.88rem; color: var(--muted);
+    font-weight: 300; line-height: 1.65;
+    margin-bottom: 1.75rem;
+  }
+
+  .btn-cta {
+    display: block; width: 100%;
+    padding: 1rem;
+    background: var(--terra);
+    color: var(--white);
+    border: none; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500;
+    text-decoration: none; text-align: center;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    box-shadow: 0 2px 14px rgba(192,122,82,0.3);
+    margin-bottom: 0.85rem;
+  }
+  .btn-cta:hover { background: var(--terra-light); transform: translateY(-1px); }
+
+  .btn-restart {
+    display: block; width: 100%;
+    padding: 0.85rem;
+    background: transparent;
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem; font-weight: 400;
+    text-align: center; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-restart:hover { border-color: var(--green); color: var(--green); }
+
+  /* OTHER PLANS */
+  .other-plans {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .other-plans-label {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 1rem; display: block;
+  }
+  .plan-pills { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .plan-pill {
+    padding: 0.5rem 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.85rem; color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--cream);
+  }
+  .plan-pill:hover { border-color: var(--green); color: var(--green); background: var(--white); }
+
+  /* COMPARISON TABLE */
+  .comparison {
+    margin-top: 3.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .comparison-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--terra);
+    margin-bottom: 0.5rem; display: block;
+    text-align: center;
+  }
+  .comparison h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem; font-weight: 600; color: var(--green);
+    text-align: center; margin-bottom: 1.75rem;
+  }
+  .comparison-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1rem;
+  }
+  .comp-card {
+    border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .comp-card:hover { box-shadow: 0 4px 16px rgba(43,74,60,0.1); transform: translateY(-2px); }
+  .comp-card.highlight { border-color: var(--terra); }
+  .comp-head {
+    padding: 1rem; background: var(--green);
+    text-align: center;
+  }
+  .comp-card.highlight .comp-head { background: var(--terra); }
+  .comp-name {
+    font-family: 'Lora', serif; font-size: 0.95rem;
+    font-weight: 600; color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+  .comp-price-sm {
+    font-size: 1.1rem; font-weight: 700;
+    color: rgba(255,255,255,0.9);
+  }
+  .comp-body { padding: 0.85rem; }
+  .comp-item {
+    font-size: 0.8rem; color: var(--muted);
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .comp-item:last-child { border-bottom: none; }
+  .comp-item::before { content: '✓'; color: var(--terra); font-size: 0.7rem; font-weight: bold; }
+
+  /* TRUST STRIP */
+  .trust-strip {
+    margin-top: 2rem;
+    display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.82rem; color: var(--muted);
+  }
+  .trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--terra); flex-shrink: 0; }
+
+  @media (max-width: 600px) {
+    .question-card, .result-card { padding: 1.75rem 1.25rem; }
+    .comparison-grid { grid-template-columns: 1fr 1fr; }
+    .result-body { padding: 1.5rem 1.25rem 1.75rem; }
+  }
+
+  /* MOBILE NAV */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; z-index: 200; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--green); border-radius: 2px; transition: all 0.3s ease; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-nav { display: none; position: fixed; inset: 0; background: rgba(250,246,239,0.98); backdrop-filter: blur(16px); z-index: 150; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 600; color: var(--green); text-decoration: none; transition: color 0.2s; }
+  .mobile-nav a:hover { color: var(--terra); }
+  .mobile-nav .mobile-cta { background: var(--green); color: var(--white) !important; padding: 0.85rem 2rem; border-radius: 100px; font-size: 1.1rem !important; }
+  .mobile-nav-close { position: absolute; top: 1.25rem; right: 5%; font-size: 1.5rem; color: var(--muted); cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; }
+  @media (max-width: 900px) { .hamburger { display: flex; } }
+
+  @media (max-width: 480px) {
+    nav { padding: 0.85rem 5%; }
+    .hero { padding: 2.5rem 5% 2rem; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { width: 100%; text-align: center; }
+    .section-pad-outer { padding: clamp(3rem,6vw,5rem) 5%; }
+    .trust-strip-inner { gap: 1rem; }
+    .trust-item { font-size: 0.78rem; }
+    .service-card { padding: 1.5rem; }
+    .faq-q { font-size: 0.92rem; padding: 1rem 1.25rem; }
+    .footer-grid { gap: 2rem; }
+    .cta-section { padding: 3.5rem 5%; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">My Homeroom</a>
+  <a href="index.html" class="nav-back">Back to home</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="https://myhomeroom.softr.app/login" style="font-size:0.88rem;color:var(--muted);text-decoration:none;">Log In</a>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-close">&#10005;</button>
+  <a href="index.html">Home</a>
+  <a href="services-academic.html">Academic Support</a>
+  <a href="services-homeschool.html">Homeschool Guidance</a>
+  <a href="services-enrichment.html">Enrichment</a>
+  <a href="educator-info.html" class="mobile-cta">For Educators</a>
+</div>
+
+<div class="hero">
+  <span class="hero-eyebrow">Family Membership Finder</span>
+  <h1>Find the plan that fits<br><em>your family.</em></h1>
+  <p>Answer 6 quick questions and we'll match you with the right My Homeroom membership — including your estimated monthly investment.</p>
+  <div class="progress-wrap">
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+    <div class="progress-label">
+      <span id="progress-text">Question 1 of 6</span>
+      <span id="progress-pct">0%</span>
+    </div>
+  </div>
+</div>
+
+<div class="quiz-outer">
+
+  <!-- Q1: Number of children -->
+  <div class="question-card active" id="q1">
+    <span class="q-step">Question 1 of 6</span>
+    <h2 class="q-title">How many children need support?</h2>
+    <p class="q-sub">Each child will be personally matched with their own educator.</p>
+    <div class="options">
+      <div class="option" data-q="1" data-val="1" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">1 child</div>
+          <div class="option-desc">One educator matched to one child</div>
+        </div>
+      </div>
+      <div class="option" data-q="1" data-val="2" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">2 children</div>
+          <div class="option-desc">Two separate educator matches</div>
+        </div>
+      </div>
+      <div class="option" data-q="1" data-val="3" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">3 or more children</div>
+          <div class="option-desc">We'll design a multi-child plan for your family</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-next" id="next1" disabled onclick="next(2, 1)">Continue</button>
+  </div>
+
+  <!-- Q2: Service type -->
+  <div class="question-card" id="q2">
+    <span class="q-step">Question 2 of 6</span>
+    <h2 class="q-title">What type of support are you looking for?</h2>
+    <p class="q-sub">Select all that apply — you can mix services across sessions.</p>
+    <div class="options">
+      <div class="option multi" data-q="2" data-val="academic" onclick="selectMulti(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">📖 Academic Support</div>
+          <div class="option-desc">Reading, math, writing, science, study skills, SAT/ACT prep</div>
+        </div>
+      </div>
+      <div class="option multi" data-q="2" data-val="homeschool" onclick="selectMulti(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">🏠 Homeschool Guidance</div>
+          <div class="option-desc">Curriculum planning, daily structure, co-teaching, NC compliance</div>
+        </div>
+      </div>
+      <div class="option multi" data-q="2" data-val="enrichment" onclick="selectMulti(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">🎨 Enrichment</div>
+          <div class="option-desc">Art, music, creative writing, foreign languages, drama</div>
+        </div>
+      </div>
+      <div class="option multi" data-q="2" data-val="notsure" onclick="selectMulti(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">Not sure yet</div>
+          <div class="option-desc">We'll figure it out together on our consultation call</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-next" id="next2" disabled onclick="next(3, 2)">Continue</button>
+    <button class="btn-back" onclick="back(1)">← Back</button>
+  </div>
+
+  <!-- Q3: Sessions per week -->
+  <div class="question-card" id="q3">
+    <span class="q-step">Question 3 of 6</span>
+    <h2 class="q-title">How many sessions per week does your family need?</h2>
+    <p class="q-sub">This determines your membership tier and monthly investment.</p>
+    <div class="options">
+      <div class="option" data-q="3" data-val="tier0" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">1 session per week</div>
+          <div class="option-desc">4 sessions per month — ideal for light, consistent support</div>
+        </div>
+      </div>
+      <div class="option" data-q="3" data-val="tier1" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">2 sessions per week</div>
+          <div class="option-desc">8 sessions per month — great for focused supplemental support</div>
+        </div>
+      </div>
+      <div class="option" data-q="3" data-val="tier2" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">3 sessions per week</div>
+          <div class="option-desc">12 sessions per month — ideal for homeschool families or deeper support</div>
+        </div>
+      </div>
+      <div class="option" data-q="3" data-val="tier3" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">4 or more sessions per week</div>
+          <div class="option-desc">16+ sessions per month — comprehensive full-support plan</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-next" id="next3" disabled onclick="next(4, 3)">Continue</button>
+    <button class="btn-back" onclick="back(2)">← Back</button>
+  </div>
+
+  <!-- Q4: Session length -->
+  <div class="question-card" id="q4">
+    <span class="q-step">Question 4 of 6</span>
+    <h2 class="q-title">How long would you like each session to be?</h2>
+    <p class="q-sub">Longer sessions allow for deeper focus and more ground covered each visit.</p>
+    <div class="options">
+      <div class="option" data-q="4" data-val="45" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">45 minutes</div>
+          <div class="option-desc">Best for younger children (K–3) or focused skill practice</div>
+        </div>
+      </div>
+      <div class="option" data-q="4" data-val="60" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">60 minutes</div>
+          <div class="option-desc">Most popular — comfortable for all ages, covers full lesson</div>
+        </div>
+      </div>
+      <div class="option" data-q="4" data-val="90" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">90 minutes</div>
+          <div class="option-desc">Best for high school students, homeschool, or multi-subject sessions</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-next" id="next4" disabled onclick="next(5, 4)">Continue</button>
+    <button class="btn-back" onclick="back(3)">← Back</button>
+  </div>
+
+  <!-- Q5: Grade level -->
+  <div class="question-card" id="q5">
+    <span class="q-step">Question 5 of 6</span>
+    <h2 class="q-title">What grade level is your child?</h2>
+    <p class="q-sub">This helps us find an educator with the right experience for your child's stage.</p>
+    <div class="options">
+      <div class="option" data-q="5" data-val="early" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">Early Elementary — Kindergarten through Grade 2</div>
+          <div class="option-desc">Phonics, early reading, number sense, foundational skills</div>
+        </div>
+      </div>
+      <div class="option" data-q="5" data-val="upper-elem" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">Upper Elementary — Grades 3 through 5</div>
+          <div class="option-desc">Reading comprehension, fractions, writing structure</div>
+        </div>
+      </div>
+      <div class="option" data-q="5" data-val="middle" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">Middle School — Grades 6 through 8</div>
+          <div class="option-desc">Pre-algebra, essay writing, study skills, test prep</div>
+        </div>
+      </div>
+      <div class="option" data-q="5" data-val="high" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">High School — Grades 9 through 12</div>
+          <div class="option-desc">AP courses, SAT/ACT prep, college essays, advanced subjects</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-next" id="next5" disabled onclick="next(6, 5)">Continue</button>
+    <button class="btn-back" onclick="back(4)">← Back</button>
+  </div>
+
+  <!-- Q6: Schedule preference -->
+  <div class="question-card" id="q6">
+    <span class="q-step">Question 6 of 6</span>
+    <h2 class="q-title">When does your family prefer sessions?</h2>
+    <p class="q-sub">We match you with educators whose availability fits your schedule.</p>
+    <div class="options">
+      <div class="option" data-q="6" data-val="weekday-afternoon" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">Weekday afternoons</div>
+          <div class="option-desc">After school, typically 3:00 – 6:00pm</div>
+        </div>
+      </div>
+      <div class="option" data-q="6" data-val="weekday-evening" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">Weekday evenings</div>
+          <div class="option-desc">After dinner, typically 6:00 – 8:00pm</div>
+        </div>
+      </div>
+      <div class="option" data-q="6" data-val="weekend" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">Weekend mornings</div>
+          <div class="option-desc">Saturday or Sunday, typically 9:00am – 1:00pm</div>
+        </div>
+      </div>
+      <div class="option" data-q="6" data-val="school-day" onclick="select(this)">
+        <div class="option-radio"></div>
+        <div class="option-content">
+          <div class="option-label">School day / flexible</div>
+          <div class="option-desc">Daytime hours — ideal for homeschool families</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-next" id="next6" disabled onclick="showResult()">See My Plan →</button>
+    <button class="btn-back" onclick="back(5)">← Back</button>
+  </div>
+
+  <!-- RESULT: TIER 0 — INTRO (1 session/week) -->
+  <div class="result-card" id="result-tier0">
+    <div class="result-header">
+      <span class="result-match">Your My Homeroom Match</span>
+      <div class="result-tier">The Intro Plan</div>
+      <div class="result-tagline">A gentle start — 1 session per week</div>
+      <div class="result-price-row">
+        <div class="result-price" id="r0-price">$269</div>
+        <div class="result-price-sub">/ month</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <span class="result-includes">What's Included</span>
+      <div class="result-items">
+        <div class="result-item"><div class="result-check">&#10003;</div>4 in-home sessions per month with your matched educator</div>
+        <div class="result-item"><div class="result-check">&#10003;</div><span id="r0-sessions">60-minute sessions</span></div>
+        <div class="result-item"><div class="result-check">&#10003;</div><span id="r0-service">Your selected service type</span></div>
+        <div class="result-item"><div class="result-check">&#10003;</div>Personal educator match — vetted, interviewed, and chosen for your child</div>
+        <div class="result-item"><div class="result-check">&#10003;</div>30-day check-in with My Homeroom to confirm everything is working</div>
+        <div class="result-item"><div class="result-check">&#10003;</div>Session summaries after every visit</div>
+        <div class="result-item"><div class="result-check">&#10003;</div>Free educator rematch if the first match is not quite right</div>
+      </div>
+      <a href="https://myhomeroom.softr.app/get-started" class="btn-cta">This looks right — let's get started &#8594;</a>
+      <button class="btn-restart" onclick="restart()">Start over</button>
+      <div class="other-plans">
+        <span class="other-plans-label">Compare all plans</span>
+        <div class="plan-pills">
+          <div class="plan-pill" onclick="forceResult('result-tier1')">Foundation — $499/mo</div>
+          <div class="plan-pill" onclick="forceResult('result-tier2')">Growth — $729/mo</div>
+          <div class="plan-pill" onclick="forceResult('result-tier3')">Full Support — $959/mo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT: TIER 1 — FOUNDATION -->
+  <div class="result-card" id="result-tier1">
+    <div class="result-header">
+      <span class="result-match">Your My Homeroom Match</span>
+      <div class="result-tier">The Foundation Plan</div>
+      <div class="result-tagline">Focused, personal support — 2 sessions per week</div>
+      <div class="result-price-row">
+        <div class="result-price" id="r1-price">$499</div>
+        <div class="result-price-sub">/ month</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <span class="result-includes">What's Included</span>
+      <div class="result-items">
+        <div class="result-item"><div class="result-check">✓</div>8 in-home sessions per month with your matched educator</div>
+        <div class="result-item"><div class="result-check">✓</div><span id="r1-sessions">60-minute sessions</span></div>
+        <div class="result-item"><div class="result-check">✓</div><span id="r1-service">Your selected service type</span></div>
+        <div class="result-item"><div class="result-check">✓</div>Personal educator match — vetted, interviewed, and chosen for your child</div>
+        <div class="result-item"><div class="result-check">✓</div>30-day check-in with My Homeroom to confirm everything is working</div>
+        <div class="result-item"><div class="result-check">✓</div>Session summaries after every visit</div>
+        <div class="result-item"><div class="result-check">✓</div>Free educator rematch if the first match is not quite right</div>
+      </div>
+      <div class="result-note">
+        <strong>Educator take-home:</strong> $416/month — Your educator keeps 80% of every session. My Homeroom retains 20% to operate the matching, vetting, and support service.
+      </div>
+      <a href="https://myhomeroom.softr.app/get-started" class="btn-cta">This looks right — let's get started →</a>
+      <button class="btn-restart" onclick="restart()">Start over</button>
+      <div class="other-plans">
+        <span class="other-plans-label">Compare all plans</span>
+        <div class="plan-pills">
+          <div class="plan-pill" onclick="forceResult('result-tier2')">Growth Plan — $729/mo</div>
+          <div class="plan-pill" onclick="forceResult('result-tier3')">Full Support — $959/mo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT: TIER 2 — GROWTH -->
+  <div class="result-card" id="result-tier2">
+    <div class="result-header">
+      <span class="result-match">Your My Homeroom Match</span>
+      <div class="result-tier">The Growth Plan</div>
+      <div class="result-tagline">Deeper support, greater momentum — 3 sessions per week</div>
+      <div class="result-price-row">
+        <div class="result-price" id="r2-price">$729</div>
+        <div class="result-price-sub">/ month</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <span class="result-includes">What's Included</span>
+      <div class="result-items">
+        <div class="result-item"><div class="result-check">✓</div>12 in-home sessions per month with your matched educator</div>
+        <div class="result-item"><div class="result-check">✓</div><span id="r2-sessions">60-minute sessions</span></div>
+        <div class="result-item"><div class="result-check">✓</div><span id="r2-service">Mix of two service types</span></div>
+        <div class="result-item"><div class="result-check">✓</div>Personal educator match — vetted, interviewed, and chosen for your child</div>
+        <div class="result-item"><div class="result-check">✓</div>30-day check-in with My Homeroom to confirm everything is working</div>
+        <div class="result-item"><div class="result-check">✓</div>Session summaries after every visit</div>
+        <div class="result-item"><div class="result-check">✓</div>Free educator rematch if the first match is not quite right</div>
+        <div class="result-item"><div class="result-check">✓</div>Priority scheduling — first access to new educators joining the network</div>
+      </div>
+      <div class="result-note">
+        <strong>Educator take-home:</strong> $583/month — Your educator keeps 80% of every session. My Homeroom retains 20% to operate the matching, vetting, and support service.
+      </div>
+      <a href="https://myhomeroom.softr.app/get-started" class="btn-cta">This looks right — let's get started →</a>
+      <button class="btn-restart" onclick="restart()">Start over</button>
+      <div class="other-plans">
+        <span class="other-plans-label">Compare all plans</span>
+        <div class="plan-pills">
+          <div class="plan-pill" onclick="forceResult('result-tier1')">Foundation Plan — $499/mo</div>
+          <div class="plan-pill" onclick="forceResult('result-tier3')">Full Support — $959/mo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT: TIER 3 — FULL SUPPORT -->
+  <div class="result-card" id="result-tier3">
+    <div class="result-header">
+      <span class="result-match">Your My Homeroom Match</span>
+      <div class="result-tier">The Full Support Plan</div>
+      <div class="result-tagline">Comprehensive, consistent learning — 4+ sessions per week</div>
+      <div class="result-price-row">
+        <div class="result-price" id="r3-price">$959</div>
+        <div class="result-price-sub">/ month</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <span class="result-includes">What's Included</span>
+      <div class="result-items">
+        <div class="result-item"><div class="result-check">✓</div>16+ in-home sessions per month with your matched educator</div>
+        <div class="result-item"><div class="result-check">✓</div><span id="r3-sessions">60-minute sessions</span></div>
+        <div class="result-item"><div class="result-check">✓</div><span id="r3-service">All services available</span></div>
+        <div class="result-item"><div class="result-check">✓</div>Personal educator match — vetted, interviewed, and chosen for your child</div>
+        <div class="result-item"><div class="result-check">✓</div>30-day check-in with My Homeroom to confirm everything is working</div>
+        <div class="result-item"><div class="result-check">✓</div>Session summaries after every visit</div>
+        <div class="result-item"><div class="result-check">✓</div>Free educator rematch if the first match is not quite right</div>
+        <div class="result-item"><div class="result-check">✓</div>Priority scheduling and first access to new educators</div>
+        <div class="result-item"><div class="result-check">✓</div>Monthly progress summary delivered to you by My Homeroom</div>
+      </div>
+      <div class="result-note">
+        <strong>Educator take-home:</strong> $767/month — Your educator keeps 80% of every session. My Homeroom retains 20% to operate the matching, vetting, and support service.
+      </div>
+      <a href="https://myhomeroom.softr.app/get-started" class="btn-cta">This looks right — let's get started →</a>
+      <button class="btn-restart" onclick="restart()">Start over</button>
+      <div class="other-plans">
+        <span class="other-plans-label">Compare all plans</span>
+        <div class="plan-pills">
+          <div class="plan-pill" onclick="forceResult('result-tier1')">Foundation Plan — $499/mo</div>
+          <div class="plan-pill" onclick="forceResult('result-tier2')">Growth Plan — $729/mo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON TABLE — shows after any result -->
+  <div class="comparison" id="comparison" style="display:none;">
+    <span class="comparison-label">Side by Side</span>
+    <h3>All My Homeroom membership plans</h3>
+    <div class="comparison-grid">
+      <div class="comp-card" onclick="forceResult('result-tier0')">
+        <div class="comp-head">
+          <div class="comp-name">Intro</div>
+          <div class="comp-price-sm">$269/mo</div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-item">1 session/week</div>
+          <div class="comp-item">4 sessions/month</div>
+          <div class="comp-item">1 service type</div>
+          <div class="comp-item">60-min sessions</div>
+          <div class="comp-item">Personal match</div>
+          <div class="comp-item">30-day check-in</div>
+        </div>
+      </div>
+      <div class="comp-card" onclick="forceResult('result-tier1')">
+        <div class="comp-head">
+          <div class="comp-name">Foundation</div>
+          <div class="comp-price-sm">$499/mo</div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-item">2 sessions/week</div>
+          <div class="comp-item">8 sessions/month</div>
+          <div class="comp-item">1 service type</div>
+          <div class="comp-item">60-min sessions</div>
+          <div class="comp-item">Personal match</div>
+          <div class="comp-item">30-day check-in</div>
+        </div>
+      </div>
+      <div class="comp-card highlight" onclick="forceResult('result-tier2')">
+        <div class="comp-head">
+          <div class="comp-name">Growth</div>
+          <div class="comp-price-sm">$729/mo</div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-item">3 sessions/week</div>
+          <div class="comp-item">12 sessions/month</div>
+          <div class="comp-item">Mix of 2 services</div>
+          <div class="comp-item">60-min sessions</div>
+          <div class="comp-item">Personal match</div>
+          <div class="comp-item">Priority scheduling</div>
+        </div>
+      </div>
+      <div class="comp-card" onclick="forceResult('result-tier3')">
+        <div class="comp-head">
+          <div class="comp-name">Full Support</div>
+          <div class="comp-price-sm">$959/mo</div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-item">4+ sessions/week</div>
+          <div class="comp-item">16+ sessions/month</div>
+          <div class="comp-item">All services</div>
+          <div class="comp-item">60-min sessions</div>
+          <div class="comp-item">Personal match</div>
+          <div class="comp-item">Monthly progress report</div>
+        </div>
+      </div>
+    </div>
+    <div class="trust-strip">
+      <div class="trust-item"><div class="trust-dot"></div>No contracts — cancel anytime</div>
+      <div class="trust-item"><div class="trust-dot"></div>Free rematch if needed</div>
+      <div class="trust-item"><div class="trust-dot"></div>Every educator personally vetted</div>
+      <div class="trust-item"><div class="trust-dot"></div>Sessions in your Charlotte home</div>
+    </div>
+  </div>
+
+</div>
+
+<footer style="border-top:1px solid var(--border);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--white);">
+  <span style="font-family:'Lora',serif;font-weight:600;font-size:1rem;color:var(--green);">My Homeroom</span>
+  <p style="font-size:0.8rem;color:var(--muted);">© 2026 My Homeroom LLC · Charlotte, NC</p>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="privacy.html" style="font-size:0.82rem;color:var(--muted);text-decoration:none;">Privacy</a>
+    <a href="terms.html" style="font-size:0.82rem;color:var(--muted);text-decoration:none;">Terms</a>
+    <a href="index.html" style="font-size:0.82rem;color:var(--muted);text-decoration:none;">Home</a>
+  </div>
+</footer>
+
+<script>
+  const answers = {};
+
+  // Single select
+  function select(el) {
+    const q = el.dataset.q;
+    document.querySelectorAll(`.option[data-q="${q}"]`).forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    answers[q] = el.dataset.val;
+    const btn = document.getElementById(`next${q}`);
+    if (btn) btn.disabled = false;
+  }
+
+  // Multi select
+  function selectMulti(el) {
+    el.classList.toggle('selected');
+    const q = el.dataset.q;
+    const selected = document.querySelectorAll(`.option[data-q="${q}"].selected`);
+    answers[q] = Array.from(selected).map(o => o.dataset.val);
+    const btn = document.getElementById(`next${q}`);
+    if (btn) btn.disabled = selected.length === 0;
+  }
+
+  function updateProgress(step) {
+    const pct = Math.round(((step - 1) / 6) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = `Question ${step} of 6`;
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function next(to, from) {
+    document.getElementById(`q${from}`).classList.remove('active');
+    const next = document.getElementById(`q${to}`);
+    next.classList.add('active');
+    updateProgress(to);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function back(to) {
+    const current = document.querySelector('.question-card.active');
+    if (current) current.classList.remove('active');
+    const results = document.querySelectorAll('.result-card.active');
+    results.forEach(r => r.classList.remove('active'));
+    document.getElementById('comparison').style.display = 'none';
+    document.getElementById(`q${to}`).classList.add('active');
+    updateProgress(to);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showResult() {
+    // Determine tier from Q3
+    const tier = answers['3'] || 'tier1';
+    // Determine session length from Q4
+    const len = answers['4'] || '60';
+    // Determine services from Q2
+    const services = answers['2'] || [];
+
+    // Build service label
+    const serviceMap = {
+      academic: 'Academic Support',
+      homeschool: 'Homeschool Guidance',
+      enrichment: 'Enrichment',
+      notsure: 'To be determined on consultation call'
+    };
+    let serviceLabel = 'Your selected services';
+    if (Array.isArray(services) && services.length > 0) {
+      serviceLabel = services.map(s => serviceMap[s] || s).join(' + ');
+    }
+
+    // Adjust price for session length and number of children
+    const children = parseInt(answers['1'] || 1);
+    const basePrices = { tier0: 269, tier1: 499, tier2: 729, tier3: 959 };
+    const lengthMultiplier = { '45': 0.85, '60': 1.0, '90': 1.35 };
+    let price = Math.round(basePrices[tier] * (lengthMultiplier[len] || 1.0));
+    if (children === 2) price = Math.round(price * 1.7);
+    if (children >= 3) price = Math.round(price * 2.2);
+
+    // Update result cards
+    const resultId = `result-${tier}`;
+    const tierNum = tier === 'tier0' ? '0' : tier.slice(-1);
+    const sesLabel = `${len}-minute sessions`;
+    document.getElementById(`r${tierNum}-price`).textContent = '$' + price.toLocaleString();
+    document.getElementById(`r${tierNum}-sessions`).textContent = sesLabel;
+    document.getElementById(`r${tierNum}-service`).textContent = serviceLabel;
+
+    // Hide questions, show result
+    document.querySelector('.question-card.active').classList.remove('active');
+    document.getElementById(resultId).classList.add('active');
+    document.getElementById('comparison').style.display = 'block';
+
+    // Update progress to 100%
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('progress-text').textContent = 'Your plan is ready!';
+    document.getElementById('progress-pct').textContent = '100%';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function forceResult(id) {
+    document.querySelectorAll('.result-card').forEach(r => r.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 200, behavior: 'smooth' });
+  }
+
+  function restart() {
+    // Hide all results
+    document.querySelectorAll('.result-card').forEach(r => r.classList.remove('active'));
+    document.getElementById('comparison').style.display = 'none';
+    // Clear answers
+    Object.keys(answers).forEach(k => delete answers[k]);
+    // Reset all selections
+    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    // Disable all next buttons
+    for (let i = 1; i <= 6; i++) {
+      const btn = document.getElementById(`next${i}`);
+      if (btn) btn.disabled = true;
+    }
+    // Show first question
+    document.getElementById('q1').classList.add('active');
+    updateProgress(1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileClose = document.getElementById('mobile-close');
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    mobileClose.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
+</body>
+</html>
