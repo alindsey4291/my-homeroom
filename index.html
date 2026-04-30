@@ -88,11 +88,6 @@
   .trust-item { display: flex; align-items: center; gap: 0.65rem; font-size: 0.88rem; color: var(--muted); }
   .trust-icon { width: 32px; height: 32px; border-radius: 50%; background: rgba(43,74,60,0.07); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
 
-  /* INTRO */
-  .intro { background: var(--cream); }
-  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-  .intro-right p { color: var(--muted); margin-bottom: 1rem; font-weight: 300; font-size: 1.03rem; }
-
   /* SERVICES */
   .services { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1.5rem; }
@@ -118,8 +113,8 @@
 
   /* HOW IT WORKS */
   .how { background: var(--cream); }
-  .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; position: relative; }
-  .steps::before { content: ''; position: absolute; top: 27px; left: 13%; width: 74%; height: 1px; background: var(--border); z-index: 0; }
+  .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; margin-top: 3rem; position: relative; }
+  .steps::before { content: ''; position: absolute; top: 27px; left: 6%; width: 88%; height: 1px; background: var(--border); z-index: 0; }
   .step { position: relative; z-index: 1; }
   .step-num { width: 54px; height: 54px; border-radius: 50%; background: var(--cream); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-weight: 600; font-size: 1.1rem; color: var(--green); margin-bottom: 1.5rem; }
   .step h3 { font-family: 'Lora', serif; font-weight: 600; font-size: 1.05rem; color: var(--green); margin-bottom: 0.5rem; }
@@ -133,7 +128,6 @@
   .testimonial-card blockquote { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--text); line-height: 1.68; margin-bottom: 1.25rem; }
   .testimonial-author { font-size: 0.85rem; color: var(--muted); font-weight: 500; }
   .testimonial-author span { color: var(--terra); font-weight: 400; }
-  .testimonials-note { text-align: center; margin-top: 2rem; font-size: 0.82rem; color: var(--muted); font-style: italic; }
 
   /* FOR FAMILIES / EDUCATORS */
   .for-split { display: grid; grid-template-columns: 1fr 1fr; }
@@ -189,14 +183,12 @@
   /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
   .reveal { opacity: 1; transform: none; transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.hidden { opacity: 0; transform: translateY(28px); }
-  .reveal.visible { opacity: 1; transform: none; }
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 3rem; }
     .hero-right { display: none; }
-    .intro-grid, .brand-diff-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .brand-diff-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .services-grid, .steps { grid-template-columns: 1fr; }
     .steps::before { display: none; }
     .values-grid { grid-template-columns: 1fr 1fr; }
@@ -231,7 +223,6 @@
     .hero h1 { font-size: 2.2rem; }
     .hero-actions { flex-direction: column; }
     .hero-actions .btn { width: 100%; text-align: center; }
-    .section-pad-outer { padding: clamp(3rem,6vw,5rem) 5%; }
     .trust-strip-inner { gap: 1rem; }
     .trust-item { font-size: 0.78rem; }
     .service-card { padding: 1.5rem; }
@@ -255,7 +246,7 @@
 
 <div class="announce-bar">
   Now welcoming families and educators in the Charlotte, NC area.
-  <a href="get-started.html">Get started →</a>
+  <a href="https://myhomeroom.softr.app/get-started">Get started free →</a>
 </div>
 
 <nav>
@@ -265,10 +256,10 @@
     <a href="#tab-area" onclick="switchTab('how')">How It Works</a>
     <a href="#tab-area" onclick="switchTab('faq')">FAQ</a>
     <a href="educator-info.html">For Educators</a>
-    <a href="https://myhomeroom.softr.app/get-started" class="nav-cta">Get Started</a>
+    <a href="https://myhomeroom.softr.app/sign-up" class="nav-cta">Join Free</a>
+    <a href="https://myhomeroom.softr.app/login" style="font-size:0.88rem;color:var(--muted);text-decoration:none;">Log In</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-    <a href="https://myhomeroom.softr.app/log-in" style="font-size:0.88rem;color:var(--muted);text-decoration:none;">Log In</a>
 </nav>
 <div class="mobile-nav" id="mobile-nav">
   <button class="mobile-nav-close" id="mobile-close">&#10005;</button>
@@ -276,7 +267,8 @@
   <a href="#tab-area" onclick="switchTab('how')">How It Works</a>
   <a href="#tab-area" onclick="switchTab('faq')">FAQ</a>
   <a href="educator-info.html">For Educators</a>
-  <a href="get-started.html" class="mobile-cta">Get Started</a>
+  <a href="https://myhomeroom.softr.app/login">Log In</a>
+  <a href="https://myhomeroom.softr.app/sign-up" class="mobile-cta">Join Free</a>
 </div>
 
 <div class="hero-wrap">
@@ -286,7 +278,7 @@
       <h1>Better learning<br><em>starts at home.</em></h1>
       <p class="hero-sub">My Homeroom helps families bring meaningful learning into the rhythm of home through personalized support from thoughtful, vetted educators.</p>
       <div class="hero-actions">
-        <a href="get-started.html" class="btn btn-primary btn-lg">Find Support for Your Family</a>
+        <a href="https://myhomeroom.softr.app/sign-up" class="btn btn-primary btn-lg">Find Support for Your Family — Free</a>
         <a href="educator-info.html" class="btn btn-secondary btn-lg">Teach with Us</a>
       </div>
       <p class="hero-note">Tutoring &nbsp;·&nbsp; Homeschool Guidance &nbsp;·&nbsp; Enrichment</p>
@@ -298,7 +290,7 @@
           <cite>— Charlotte Parent &nbsp;⭐⭐⭐⭐⭐</cite>
         </div>
         <div class="hero-features">
-          <div class="hero-feature"><div class="hero-feature-dot"></div>Personally matched to your child</div>
+          <div class="hero-feature"><div class="hero-feature-dot"></div>Free to browse and get matched</div>
           <div class="hero-feature"><div class="hero-feature-dot"></div>Every educator personally reviewed</div>
           <div class="hero-feature"><div class="hero-feature-dot"></div>Flexible scheduling around your home</div>
           <div class="hero-feature"><div class="hero-feature-dot"></div>Academic support, homeschool &amp; enrichment</div>
@@ -311,7 +303,7 @@
 
 <div class="trust-strip">
   <div class="trust-strip-inner">
-    <div class="trust-item"><div class="trust-icon">✓</div>Personally matched — not a directory</div>
+    <div class="trust-item"><div class="trust-icon">✓</div>Free to join — no credit card required</div>
     <div class="trust-item"><div class="trust-icon">🔍</div>Every educator personally reviewed</div>
     <div class="trust-item"><div class="trust-icon">🏠</div>Support that fits real family life</div>
     <div class="trust-item"><div class="trust-icon">📍</div>Rooted in Charlotte, NC</div>
@@ -383,7 +375,7 @@
         <div class="step">
           <div class="step-num">1</div>
           <h3>Create your free account</h3>
-          <p>Sign up for $9.99/month to access our curated network of vetted Charlotte educators. No commitment — cancel anytime.</p>
+          <p>Sign up for free to access our curated network of vetted Charlotte educators. No credit card required — ever.</p>
         </div>
         <div class="step">
           <div class="step-num">2</div>
@@ -392,8 +384,8 @@
         </div>
         <div class="step">
           <div class="step-num">3</div>
-          <h3>Select your plan — $9.99 waived</h3>
-          <p>Once matched, choose the session plan that fits your family. Your $9.99 monthly fee is waived immediately.</p>
+          <h3>Select your plan</h3>
+          <p>Once matched, choose the session plan that fits your family — Intro, Foundation, Growth, or Full Support.</p>
         </div>
         <div class="step">
           <div class="step-num">4</div>
@@ -402,7 +394,7 @@
         </div>
       </div>
       <div style="margin-top:2.5rem;text-align:center;">
-        <a href="https://myhomeroom.softr.app/get-started" class="btn btn-primary">Get Started — $9.99/month</a>
+        <a href="https://myhomeroom.softr.app/sign-up" class="btn btn-primary">Get Started — Free</a>
       </div>
     </div>
   </div>
@@ -415,12 +407,12 @@
       <h2>Frequently asked questions</h2>
       <div class="faq-grid" style="margin-top:2rem;">
         <div class="faq-item">
-          <button class="faq-q">How does the $9.99/month work?</button>
-          <div class="faq-a">Your $9.99/month gives you full access to browse our network of vetted Charlotte educators and request a match. The moment you select a session plan — Intro, Foundation, Growth, or Full Support — your $9.99 fee is waived immediately and replaced by your plan pricing.</div>
+          <button class="faq-q">Is it really free to join?</button>
+          <div class="faq-a">Yes — creating your family account and browsing matched educators is completely free. You only pay when you select a session plan. Plans start at $269/month for one session per week and scale based on how much support your family needs.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q">How does My Homeroom match me with an educator?</button>
-          <div class="faq-a">We review your family's intake form personally and recommend educators we believe are a strong fit — based on your child's needs, your schedule, your home environment, and the kind of relationship you are looking for. You are never handed a list to sort through on your own.</div>
+          <div class="faq-a">We review your family's intake form and recommend educators we believe are a strong fit — based on your child's needs, your schedule, your home environment, and the kind of relationship you are looking for. You are never handed a list to sort through on your own.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q">What ages and grade levels do you support?</button>
@@ -444,6 +436,7 @@
 
 </div>
 
+<!-- COMPARISON SECTION -->
 <section id="compare" style="background:var(--white);padding:clamp(3rem,6vw,5rem) 5%;border-top:1px solid var(--border);">
   <div class="container">
     <span class="section-label">Why My Homeroom</span>
@@ -452,8 +445,8 @@
     <p style="font-size:1rem;color:var(--muted);font-weight:300;max-width:560px;margin-bottom:1.5rem;">Charlotte families have more choices than ever. Here is how My Homeroom stacks up — on price, personalization, and convenience.</p>
 
     <div style="display:inline-flex;align-items:center;gap:0.75rem;background:var(--green);color:#fff;padding:0.75rem 1.5rem;border-radius:100px;margin-bottom:2rem;">
-      <span style="font-family:'Lora',serif;font-size:1.3rem;font-weight:700;color:var(--terra-light);">$9.99</span>
-      <span style="font-size:0.9rem;font-weight:300;color:rgba(255,255,255,0.85);">per month to get matched — waived once you choose a plan</span>
+      <span style="font-family:'Lora',serif;font-size:1.3rem;font-weight:700;color:var(--terra-light);">Free</span>
+      <span style="font-size:0.9rem;font-weight:300;color:rgba(255,255,255,0.85);">to browse your matches — billed only once you choose a plan</span>
     </div>
 
     <div style="overflow-x:auto;">
@@ -505,12 +498,12 @@
           <tr style="background:var(--green);">
             <td style="padding:1.25rem 1.25rem;border-radius:12px 0 0 12px;">
               <div style="font-weight:600;color:var(--white);font-family:'Lora',serif;font-size:1rem;margin-bottom:0.2rem;">My Homeroom</div>
-              <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);font-weight:300;">Browse matched educators instantly</div>
+              <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);font-weight:300;">Browse matched educators free</div>
             </td>
             <td style="text-align:center;padding:1.25rem 1.25rem;">
-              <div style="font-family:'Lora',serif;font-size:1.5rem;font-weight:700;color:var(--terra-light);">$9.99</div>
-              <div style="font-size:0.78rem;color:rgba(255,255,255,0.7);margin-top:0.2rem;">per month to get matched</div>
-              <div style="font-size:0.72rem;color:rgba(255,255,255,0.5);margin-top:0.15rem;">Waived once you choose a plan</div>
+              <div style="font-family:'Lora',serif;font-size:1.5rem;font-weight:700;color:var(--terra-light);">Free</div>
+              <div style="font-size:0.78rem;color:rgba(255,255,255,0.7);margin-top:0.2rem;">to join and get matched</div>
+              <div style="font-size:0.72rem;color:rgba(255,255,255,0.5);margin-top:0.15rem;">Pay only when you choose a plan</div>
             </td>
             <td style="text-align:center;padding:1.25rem 1.25rem;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">✓</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">Every session</div></td>
             <td style="text-align:center;padding:1.25rem 1.25rem;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">✓</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">We come to you</div></td>
@@ -524,11 +517,10 @@
       Charlotte private school tuition sourced from school websites (2026). Sylvan Learning rate based on published Charlotte-area session pricing. Care.com average based on January 2026 Charlotte market data.
     </p>
     <div style="margin-top:2rem;text-align:center;">
-      <a href="https://myhomeroom.softr.app/get-started" style="display:inline-block;background:var(--terra);color:#fff;padding:0.85rem 2rem;border-radius:100px;font-size:0.95rem;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif;">Start for $9.99/month →</a>
+      <a href="https://myhomeroom.softr.app/sign-up" style="display:inline-block;background:var(--terra);color:#fff;padding:0.85rem 2rem;border-radius:100px;font-size:0.95rem;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif;">Get Started — Free →</a>
     </div>
   </div>
 </section>
-
 
 <div class="for-split">
   <div class="for-panel for-panel-families">
@@ -538,7 +530,7 @@
     <p class="reveal">No two learners are exactly alike. That is why My Homeroom is built around flexibility, fit, and personal attention.</p>
     <p class="reveal">You may be looking for weekly help in math. You may need someone to guide a homeschool routine. You may want to nurture a child's strengths through writing, music, or another creative subject.</p>
     <p class="reveal">Whatever brings you here, we are here to help you find support that feels steady, encouraging, and right for your family.</p>
-    <a href="get-started.html" class="btn btn-primary reveal">Find Support for Your Family</a>
+    <a href="https://myhomeroom.softr.app/sign-up" class="btn btn-primary reveal">Find Support for Your Family — Free</a>
   </div>
   <div class="for-panel for-panel-teachers" id="teachers">
     <span class="section-label reveal">For Educators</span>
@@ -605,7 +597,7 @@
     <h2 class="reveal">Bring better learning home</h2>
     <p class="reveal">The strongest learning support is not always louder, faster, or more complicated. Sometimes it is simply the right person, in the right space, at the right time.</p>
     <div class="cta-buttons reveal">
-      <a href="get-started.html" class="btn btn-white btn-lg">Find Support for Your Family</a>
+      <a href="https://myhomeroom.softr.app/sign-up" class="btn btn-white btn-lg">Find Support for Your Family — Free</a>
       <a href="educator-info.html" class="btn btn-outline-white btn-lg">Teach with My Homeroom</a>
     </div>
   </div>
@@ -631,9 +623,10 @@
     </div>
     <div class="footer-col">
       <h4>Get Started</h4>
-      <a href="get-started.html">Find Support</a>
+      <a href="https://myhomeroom.softr.app/sign-up">Join Free</a>
       <a href="https://myhomeroom.softr.app/educator-apply">Apply to Teach</a>
-      <a href="/cdn-cgi/l/email-protection#751d1019191a35180c1d1a1810071a1a185b1a0712">Contact Us</a>
+      <a href="https://myhomeroom.softr.app/login">Log In</a>
+      <a href="mailto:hello@myhomeroom.org">Contact Us</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -697,7 +690,6 @@
     var area = document.getElementById('tab-area');
     if (area) area.scrollIntoView({behavior:'smooth', block:'start'});
   }
-
 </script>
 </body>
 </html>
