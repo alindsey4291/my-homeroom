@@ -83,17 +83,11 @@
   .hero-feature-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--terra); flex-shrink: 0; }
 
   /* TRUST STRIP */
-  <div class="trust-strip">
-  <div class="trust-strip-inner">
-    <div class="trust-item"><div class="trust-icon">✓</div>Free to join — no credit card required</div>
-    <div class="trust-item"><div class="trust-icon">🔍</div>Every educator personally reviewed</div>
-    <div class="trust-item"><div class="trust-icon">🏠</div>Support that fits real family life</div>
-    <div class="trust-item"><div class="trust-icon">📍</div>Rooted in Charlotte, NC</div>
-    <div class="trust-item"><div class="trust-icon">❤️</div>Relationship-first approach</div>
-    <div class="trust-item"><div class="trust-icon">💳</div>ESA+ accepted via ClassWallet</div>
-  </div>
-</div>
-  
+  .trust-strip { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.75rem 5%; }
+  .trust-strip-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+  .trust-item { display: flex; align-items: center; gap: 0.65rem; font-size: 0.88rem; color: var(--muted); }
+  .trust-icon { width: 32px; height: 32px; border-radius: 50%; background: rgba(43,74,60,0.07); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+
   /* SERVICES */
   .services { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1.5rem; }
@@ -263,7 +257,7 @@
 
 <div class="announce-bar">
   Now accepting ESA+ for eligible families in Charlotte, NC.
-  <a href="https://myhomeroom.softr.app/get-started">Learn more &amp; get started →</a>
+  <a href="https://myhomeroom.softr.app/get-started">Get started free →</a>
 </div>
 
 <nav>
@@ -448,9 +442,9 @@
           <div class="faq-a">Yes — no contracts and no cancellation fees. You can pause or cancel your membership at any time directly from your account dashboard. If your first match is not right, we find a better one at no additional charge.</div>
         </div>
         <div class="faq-item">
-  <button class="faq-q">Do you accept ESA+ funding?</button>
-  <div class="faq-a">Yes — My Homeroom is a registered ESA+ provider in North Carolina. Eligible families can use their ClassWallet funds to pay for sessions directly. Contact us at hello@myhomeroom.org to get started with ESA+ enrollment and we will walk you through the process.</div>
-</div>
+          <button class="faq-q">Do you accept ESA+ funding?</button>
+          <div class="faq-a">Yes &#8212; My Homeroom is a registered ESA+ provider in North Carolina. Eligible families can use their ClassWallet funds to pay for sessions directly. Contact us at hello@myhomeroom.org and we will walk you through the enrollment process step by step.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -477,10 +471,10 @@
     </div>
 
     <div style="overflow-x:auto;">
-      <table style="width:100%;border-collapse:collapse;font-family:'DM Sans',sans-serif;font-size:0.93rem;min-width:640px;">
+      <table style="width:100%;border-collapse:collapse;font-family:'DM Sans',sans-serif;font-size:0.93rem;min-width:700px;">
         <thead>
           <tr>
-            <th style="text-align:left;padding:1rem 1.25rem;font-size:0.75rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border);width:28%;">Option</th>
+            <th style="text-align:left;padding:1rem 1.25rem;font-size:0.75rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border);width:24%;">Option</th>
             <th style="text-align:center;padding:1rem 1.25rem;font-size:0.75rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border);">To Get Started</th>
             <th style="text-align:center;padding:1rem 1.25rem;font-size:0.75rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border);">1-on-1 Attention</th>
             <th style="text-align:center;padding:1rem 1.25rem;font-size:0.75rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border);">In Your Home</th>
@@ -536,11 +530,11 @@
               <div style="font-size:0.78rem;color:rgba(255,255,255,0.7);margin-top:0.2rem;">to join and get matched</div>
               <div style="font-size:0.72rem;color:rgba(255,255,255,0.5);margin-top:0.15rem;">Pay only when you choose a plan</div>
             </td>
-            <td style="text-align:center;padding:1.25rem 1.25rem;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">✓</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">Every session</div></td>
-            <td style="text-align:center;padding:1.25rem 1.25rem;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">✓</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">We come to you</div></td>
-            <td style="text-align:center;padding:1.25rem 1.25rem;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">✓</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">Personally matched</div></td>
-            <td style="text-align:center;padding:1.25rem 1.25rem;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">✓</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">Interview + background check</div></td>
-            <td style="text-align:center;padding:1.25rem 1.25rem;border-radius:0 12px 12px 0;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">✓</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">via ClassWallet</div></td>
+            <td style="text-align:center;padding:1.25rem 1.25rem;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">&#10003;</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">Every session</div></td>
+            <td style="text-align:center;padding:1.25rem 1.25rem;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">&#10003;</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">We come to you</div></td>
+            <td style="text-align:center;padding:1.25rem 1.25rem;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">&#10003;</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">Personally matched</div></td>
+            <td style="text-align:center;padding:1.25rem 1.25rem;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">&#10003;</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">Interview + background check</div></td>
+            <td style="text-align:center;padding:1.25rem 1.25rem;border-radius:0 12px 12px 0;"><span style="color:#7DCEA0;font-size:1.3rem;font-weight:bold;">&#10003;</span><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;">via ClassWallet</div></td>
           </tr>
         </tbody>
       </table>
@@ -550,15 +544,14 @@
     </p>
     <div style="margin-top:1rem;padding:1rem 1.5rem;background:var(--cream);border:1px solid var(--border);border-left:4px solid var(--terra);border-radius:0 10px 10px 0;">
       <p style="font-size:0.88rem;color:var(--muted);font-weight:300;">
-        <strong style="color:var(--green);">💳 ESA+ families:</strong> My Homeroom is a registered ESA+ provider in North Carolina. Eligible families can use their ClassWallet funds to pay for sessions. Contact us at <a href="mailto:hello@myhomeroom.org" style="color:var(--terra);text-decoration:none;">hello@myhomeroom.org</a> to get started.
+        <strong style="color:var(--green);">&#128179; ESA+ families:</strong> My Homeroom is a registered ESA+ provider in North Carolina. Eligible families can use their ClassWallet funds to pay for sessions. Contact us at <a href="mailto:hello@myhomeroom.org" style="color:var(--terra);text-decoration:none;">hello@myhomeroom.org</a> to get started.
       </p>
     </div>
     <div style="margin-top:1.5rem;text-align:center;">
-      <a href="https://myhomeroom.softr.app/sign-up" style="display:inline-block;background:var(--terra);color:#fff;padding:0.85rem 2rem;border-radius:100px;font-size:0.95rem;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif;">Get Started — Free →</a>
+      <a href="https://myhomeroom.softr.app/sign-up" style="display:inline-block;background:var(--terra);color:#fff;padding:0.85rem 2rem;border-radius:100px;font-size:0.95rem;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif;">Get Started &#8212; Free &#8594;</a>
     </div>
   </div>
 </section>
-
 
 <!-- MEMBERSHIP TIERS -->
 <section style="background:var(--cream);padding:clamp(3rem,6vw,5rem) 5%;border-top:1px solid var(--border);">
@@ -738,6 +731,10 @@
       <div class="faq-item">
         <button class="faq-q">Do you support homeschool families specifically?</button>
         <div class="faq-a">Yes. Homeschool guidance is one of our core services. We connect homeschool families with experienced educators who can help bring structure, curriculum support, consistency, and confidence to learning at home.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you accept ESA+ funding?</button>
+        <div class="faq-a">Yes &#8212; My Homeroom is a registered ESA+ provider in North Carolina. Eligible families can use their ClassWallet funds to pay for sessions directly. Contact us at hello@myhomeroom.org and we will walk you through the enrollment process step by step.</div>
       </div>
     </div>
   </div>
