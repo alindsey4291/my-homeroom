@@ -240,6 +240,17 @@
   .tab-panel { display:none; padding:clamp(2.5rem,5vw,4rem) 0; }
   .tab-panel.active { display:block; }
   @media (max-width:600px) { .tab-btn { padding:0.9rem 1.1rem; font-size:0.82rem; } }
+
+  /* MEMBERSHIP TIERS MOBILE */
+  @media (max-width: 900px) {
+    #membership-grid { grid-template-columns: 1fr 1fr !important; gap: 1rem !important; }
+  }
+  @media (max-width: 540px) {
+    #membership-grid { grid-template-columns: 1fr !important; gap: 0.85rem !important; }
+    #membership-grid > div { border-radius: 16px !important; }
+    #membership-grid > div > div:first-child { padding: 1.25rem !important; }
+    #membership-grid > div > div:last-child { padding: 1rem 1.25rem !important; }
+  }
 </style>
 </head>
 <body>
@@ -521,6 +532,8 @@
     </div>
   </div>
 </section>
+
+
 <!-- MEMBERSHIP TIERS -->
 <section style="background:var(--cream);padding:clamp(3rem,6vw,5rem) 5%;border-top:1px solid var(--border);">
   <div class="container">
@@ -534,7 +547,7 @@
       ✓ Free to join &nbsp;·&nbsp; ✓ No credit card to browse &nbsp;·&nbsp; ✓ Cancel anytime
     </p>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;">
+    <div id="membership-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;">
 
       <!-- INTRO -->
       <div style="background:var(--white);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;">
@@ -544,34 +557,16 @@
           <div style="font-size:0.82rem;color:rgba(255,255,255,0.55);margin-top:0.3rem;">per month</div>
         </div>
         <div style="padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;">
-          <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem;">What's Included</div>
+          <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem;">What&#39;s Included</div>
           <div style="display:flex;flex-direction:column;gap:0.6rem;flex:1;">
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              1 session per week
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              4 sessions per month
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              1 service type
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Personal educator match
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              30-day check-in
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Free rematch if needed
-            </div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>1 session per week</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>4 sessions per month</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>1 service type</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Personal educator match</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>30-day check-in</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Free rematch if needed</div>
           </div>
-          <a href="https://myhomeroom.softr.app/sign-up" style="display:block;text-align:center;margin-top:1.5rem;background:var(--green);color:#fff;padding:0.75rem 1rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;text-decoration:none;">Get Started Free →</a>
+          <a href="https://myhomeroom.softr.app/sign-up" style="display:block;text-align:center;margin-top:1.5rem;background:var(--green);color:#fff;padding:0.75rem 1rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;text-decoration:none;">Get Started Free &#8594;</a>
         </div>
       </div>
 
@@ -583,38 +578,20 @@
           <div style="font-size:0.82rem;color:rgba(255,255,255,0.55);margin-top:0.3rem;">per month</div>
         </div>
         <div style="padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;">
-          <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem;">What's Included</div>
+          <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem;">What&#39;s Included</div>
           <div style="display:flex;flex-direction:column;gap:0.6rem;flex:1;">
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              2 sessions per week
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              8 sessions per month
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              1 service type
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Personal educator match
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              30-day check-in
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Free rematch if needed
-            </div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>2 sessions per week</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>8 sessions per month</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>1 service type</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Personal educator match</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>30-day check-in</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Free rematch if needed</div>
           </div>
-          <a href="https://myhomeroom.softr.app/sign-up" style="display:block;text-align:center;margin-top:1.5rem;background:var(--green);color:#fff;padding:0.75rem 1rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;text-decoration:none;">Get Started Free →</a>
+          <a href="https://myhomeroom.softr.app/sign-up" style="display:block;text-align:center;margin-top:1.5rem;background:var(--green);color:#fff;padding:0.75rem 1rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;text-decoration:none;">Get Started Free &#8594;</a>
         </div>
       </div>
 
-      <!-- GROWTH — highlighted -->
+      <!-- GROWTH -->
       <div style="background:var(--white);border:2px solid var(--terra);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;position:relative;">
         <div style="position:absolute;top:0;left:0;right:0;text-align:center;background:var(--terra);color:#fff;font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem;">Most Popular</div>
         <div style="background:var(--terra);padding:2rem 1.5rem 1.25rem;">
@@ -623,38 +600,17 @@
           <div style="font-size:0.82rem;color:rgba(255,255,255,0.6);margin-top:0.3rem;">per month</div>
         </div>
         <div style="padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;">
-          <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem;">What's Included</div>
+          <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem;">What&#39;s Included</div>
           <div style="display:flex;flex-direction:column;gap:0.6rem;flex:1;">
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              3 sessions per week
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              12 sessions per month
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Mix of 2 service types
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Personal educator match
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              30-day check-in
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Free rematch if needed
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Priority scheduling
-            </div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>3 sessions per week</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>12 sessions per month</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Mix of 2 service types</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Personal educator match</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>30-day check-in</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Free rematch if needed</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(192,122,82,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--terra);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Priority scheduling</div>
           </div>
-          <a href="https://myhomeroom.softr.app/sign-up" style="display:block;text-align:center;margin-top:1.5rem;background:var(--terra);color:#fff;padding:0.75rem 1rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;text-decoration:none;">Get Started Free →</a>
+          <a href="https://myhomeroom.softr.app/sign-up" style="display:block;text-align:center;margin-top:1.5rem;background:var(--terra);color:#fff;padding:0.75rem 1rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;text-decoration:none;">Get Started Free &#8594;</a>
         </div>
       </div>
 
@@ -666,67 +622,32 @@
           <div style="font-size:0.82rem;color:rgba(255,255,255,0.55);margin-top:0.3rem;">per month</div>
         </div>
         <div style="padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;">
-          <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem;">What's Included</div>
+          <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem;">What&#39;s Included</div>
           <div style="display:flex;flex-direction:column;gap:0.6rem;flex:1;">
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              4+ sessions per week
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              16+ sessions per month
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              All service types
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Personal educator match
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              30-day check-in
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Free rematch if needed
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Priority scheduling
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);">
-              <div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">✓</div>
-              Monthly progress summary
-            </div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>4+ sessions per week</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>16+ sessions per month</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>All service types</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Personal educator match</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>30-day check-in</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Free rematch if needed</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Priority scheduling</div>
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--text);"><div style="width:18px;height:18px;border-radius:5px;background:rgba(43,74,60,0.09);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);font-weight:bold;flex-shrink:0;margin-top:1px;">&#10003;</div>Monthly progress summary</div>
           </div>
-          <a href="https://myhomeroom.softr.app/sign-up" style="display:block;text-align:center;margin-top:1.5rem;background:var(--green);color:#fff;padding:0.75rem 1rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;text-decoration:none;">Get Started Free →</a>
+          <a href="https://myhomeroom.softr.app/sign-up" style="display:block;text-align:center;margin-top:1.5rem;background:var(--green);color:#fff;padding:0.75rem 1rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;text-decoration:none;">Get Started Free &#8594;</a>
         </div>
       </div>
 
     </div>
 
-    <!-- Bottom note -->
     <div style="margin-top:2rem;padding:1.5rem;background:var(--white);border:1px solid var(--border);border-left:4px solid var(--terra);border-radius:0 14px 14px 0;">
       <p style="font-size:0.93rem;color:var(--muted);font-weight:300;">
         <strong style="color:var(--green);">Not sure which plan is right?</strong> Start with a free account and browse our educator network first. Our quiz helps you find the right fit based on your child's needs and your family's schedule.
-        <a href="get-started.html" style="color:var(--terra);font-weight:500;text-decoration:none;margin-left:0.35rem;">Take the quiz →</a>
+        <a href="get-started.html" style="color:var(--terra);font-weight:500;text-decoration:none;margin-left:0.35rem;">Take the quiz &#8594;</a>
       </p>
     </div>
-
-    <!-- Mobile responsive style -->
-    <style>
-      @media (max-width: 900px) {
-        #membership-grid { grid-template-columns: 1fr 1fr !important; }
-      }
-      @media (max-width: 540px) {
-        #membership-grid { grid-template-columns: 1fr !important; }
-      }
-    </style>
-
   </div>
 </section>
+
 <div class="for-split">
   <div class="for-panel for-panel-families">
     <span class="section-label reveal">For Families</span>
